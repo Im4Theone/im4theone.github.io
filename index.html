@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Systems & Software Engineer</title>
+<style>
+:root { --bg: #0d1117; --fg: #c9d1d9; --accent: #58a6ff; --border: #30363d; }
+body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--fg); max-width: 900px; margin: 0 auto; padding: 2rem; line-height: 1.6; }
+header { border-bottom: 1px solid var(--border); padding-bottom: 2rem; margin-bottom: 2rem; }
+h1 { margin: 0; font-size: 2.5rem; color: #fff; }
+h2 { color: #fff; margin-top: 2rem; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+.card { border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; background: #161b22; }
+.tag { display: inline-block; padding: 0.2rem 0.5rem; border-radius: 3px; font-size: 0.8rem; background: #21262d; margin-right: 0.5rem; margin-top: 0.5rem; border: 1px solid var(--border); }
+</style>
+</head>
+<body>
+<header>
+<h1>Developer Portfolio</h1>
+<p>Software Engineer specializing in backend infrastructure, automation, and vanilla web stacks.</p>
+<div>
+<a href="mailto:contact@example.com">Email</a> |
+<a href="https://github.com/KaloyanSys32">GitHub</a>
+</div>
+</header>
+<main>
+<h2>Core Stack</h2>
+<div class="card">
+<span class="tag">Python</span>
+<span class="tag">Java</span>
+<span class="tag">SQL</span>
+<span class="tag">HTML/CSS/JS</span>
+<span class="tag">Bash</span>
+<span class="tag">PowerShell</span>
+</div>
+<h2>Projects</h2>
+<div class="grid" id="project-grid"></div>
+</main>
+<script>
+const projects = [
+  {
+    title: "Minecraft Economy System",
+    description: "High-performance plugin handling concurrent SQLite transactions.",
+    tags: ["Java", "SQLite", "Spigot API"],
+    link: "#"
+  },
+  {
+    title: "Automated Data Pipeline",
+    description: "Python extraction tool running on an Ubuntu cron schedule.",
+    tags: ["Python", "Cron", "SQL"],
+    link: "#"
+  },
+  {
+    title: "Homelab Infrastructure",
+    description: "Self-hosted environment routed through secure tunnels.",
+    tags: ["Ubuntu 24.04", "Bash", "Nginx"],
+    link: "#"
+  }
+];
+
+const grid = document.getElementById('project-grid');
+
+projects.forEach(p => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  const tagsHtml = p.tags.map(t => <span class="tag"></span>).join('');
+  card.innerHTML = \<h3 style="margin-top:0"><a href="\">\</a></h3><p>\</p><div>\</div>\;
+  grid.appendChild(card);
+});
+</script>
+</body>
+</html>
