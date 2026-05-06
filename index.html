@@ -3,60 +3,225 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Systems & Software Engineer</title>
+<title>Kaloyan | Systems & Software Engineer</title>
 <style>
-:root { --bg: #0d1117; --fg: #c9d1d9; --accent: #58a6ff; --border: #30363d; }
-body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--fg); max-width: 900px; margin: 0 auto; padding: 2rem; line-height: 1.6; }
-header { border-bottom: 1px solid var(--border); padding-bottom: 2rem; margin-bottom: 2rem; }
-h1 { margin: 0; font-size: 2.5rem; color: #fff; }
-h2 { color: #fff; margin-top: 2rem; }
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-.card { border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; background: #161b22; }
-.tag { display: inline-block; padding: 0.2rem 0.5rem; border-radius: 3px; font-size: 0.8rem; background: #21262d; margin-right: 0.5rem; margin-top: 0.5rem; border: 1px solid var(--border); }
+/* Defining a cohesive, layered theme */
+:root {
+  --bg-main: #010409;    /* The deep background canvas */
+  --bg-layer-1: #0d1117; /* Sligtly elevated elements (header) */
+  --bg-layer-2: #161b22; /* Even more elevated (cards) */
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --accent: #2f81f7;    /* A cleaner, modern blue */
+  --accent-glow: rgba(47, 129, 247, 0.2);
+  --border-subtle: #21262d;
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+header {
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 3rem;
+  margin-bottom: 3rem;
+  background-color: var(--bg-main); /* Integrates header seamlessly */
+}
+
+h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'SF Mono', monospace; /* More 'systems' feel for title */
+}
+
+h2 {
+  color: #fff;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+a:hover {
+  color: #79c0ff;
+  text-decoration: underline;
+}
+
+/* --- The Dynamic, Integrated Grid --- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem; /* Better breathing room */
+}
+
+/* The Core "Natural" Card Design */
+.card {
+  background-color: var(--bg-layer-2);
+  border: 1px solid transparent; /* No harsh borders */
+  border-radius: 12px;           /* Standardized curve */
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  /* Standardizing depth: No shadow when static, subtle elevation on hover */
+  box-shadow: 0 0 0 0 rgba(0,0,0,0);
+  transition: var(--transition-smooth);
+  transform: translateY(0);
+}
+
+/* Card Hover State: Elevation + Subtle Accent Reveal */
+.card:hover {
+  transform: translateY(-8px); /* Lifts standard amount */
+  border-color: var(--border-subtle); /* Reveal subtlest edge */
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5), 0 0 20px 0 var(--accent-glow); /* Complex depth + glow */
+}
+
+/* Card typography structure */
+.card h3 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+.card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  flex-grow: 1; /* Pushes tags to the bottom */
+}
+
+/* Unified tag design */
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-family: monospace;
+  background-color: var(--bg-layer-1);
+  color: var(--accent);
+  border: 1px solid var(--border-subtle);
+  transition: var(--transition-smooth);
+}
+
+.tag:hover {
+  background-color: var(--bg-layer-2);
+  border-color: var(--accent);
+}
+
+/* Custom Core Stack Card */
+#core-stack-card {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 1.5rem;
+}
+
+/* UI Effects */
+.cursor {
+  display: inline-block;
+  width: 10px;
+  height: 1.2em;
+  background-color: var(--accent);
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Quick CSS design standardization */
+#contact-links a {
+  margin-right: 1rem;
+}
+
 </style>
 </head>
 <body>
+
 <header>
-<h1>Developer Portfolio</h1>
-<p>Software Engineer specializing in backend infrastructure, automation, and vanilla web stacks.</p>
-<div>
-<a href="mailto:contact@example.com">Email</a> |
-<a href="https://github.com/KaloyanSys32">GitHub</a>
-</div>
+  <h1><span id="typewriter"></span><span class="cursor"></span></h1>
+  <p>Software Engineer specializing in backend infrastructure, automation, and systems architecture.</p>
+  <div id="contact-links">
+    <a href="mailto:kaloyan@example.com">Email</a>
+    <a href="https://github.com/KaloyanSys32">GitHub</a>
+  </div>
 </header>
+
 <main>
-<h2>Core Stack</h2>
-<div class="card">
-<span class="tag">Python</span>
-<span class="tag">Java</span>
-<span class="tag">SQL</span>
-<span class="tag">HTML/CSS/JS</span>
-<span class="tag">Bash</span>
-<span class="tag">PowerShell</span>
-</div>
-<h2>Projects</h2>
-<div class="grid" id="project-grid"></div>
+  <h2>Core Stack</h2>
+  <div class="card" id="core-stack-card">
+    <span class="tag">Python</span>
+    <span class="tag">Java</span>
+    <span class="tag">SQL</span>
+    <span class="tag">Bash</span>
+    <span class="tag">PowerShell</span>
+    <span class="tag">Nginx</span>
+    <span class="tag">Ubuntu Server</span>
+    <span class="tag">Vanilla Web (HTML/CSS/JS)</span>
+  </div>
+
+  <h2>Projects</h2>
+  <div class="grid" id="project-grid"></div>
 </main>
+
 <script>
+// Keep the dynamic logic; update the aesthetic rendering
+const title = "Kaloyan | Systems Engineer";
+let i = 0;
+function typeWriter() {
+  if (i < title.length) {
+    document.getElementById("typewriter").innerHTML += title.charAt(i);
+    i++;
+    setTimeout(typeWriter, 60); // Sligtly slower is more satisfying
+  }
+}
+window.onload = typeWriter;
+
+// Modernizing the project rendering with standard HTML structure
 const projects = [
   {
     title: "Minecraft Economy System",
-    description: "High-performance plugin handling concurrent SQLite transactions.",
-    tags: ["Java", "SQLite", "Spigot API"],
+    description: "High-performance Java plugin using SQLite for transactional player data and leaderboards.",
+    tags: ["Java", "SQLite", "Spigot API", "Nginx"],
     link: "#"
   },
   {
     title: "Automated Data Pipeline",
-    description: "Python extraction tool running on an Ubuntu cron schedule.",
-    tags: ["Python", "Cron", "SQL"],
+    description: "Python extraction script deployed via Bash on Ubuntu Server using cron scheduling.",
+    tags: ["Python", "Cron", "SQL", "Bash"],
     link: "#"
   },
   {
     title: "Homelab Infrastructure",
-    description: "Self-hosted environment routed through secure tunnels.",
-    tags: ["Ubuntu 24.04", "Bash", "Nginx"],
+    description: "Nginx configuration on Ubuntu 24.04 exposed securely via Cloudflare Tunnels.",
+    tags: ["Ubuntu 24.04", "Bash", "Nginx", "Cloudflare"],
     link: "#"
   }
 ];
@@ -66,8 +231,15 @@ const grid = document.getElementById('project-grid');
 projects.forEach(p => {
   const card = document.createElement('div');
   card.className = 'card';
-  const tagsHtml = p.tags.map(t => <span class="tag"></span>).join('');
-  card.innerHTML = \<h3 style="margin-top:0"><a href="\">\</a></h3><p>\</p><div>\</div>\;
+
+  // Constructing tags HTML separately
+  const tagsHtml = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+  card.innerHTML = `
+    <h3><a href="${p.link}">${p.title}</a></h3>
+    <p>${p.description}</p>
+    <div class="card-tags">${tagsHtml}</div>
+  `;
   grid.appendChild(card);
 });
 </script>
