@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kaloyan Krastev | Software Engineer</title>
+<title>Contact | Kaloyan Krastev</title>
 <style>
 :root {
     --bg-base: #000000;
@@ -25,23 +25,8 @@
 }
 
 html {
+    scroll-behavior: smooth;
     scroll-padding-top: 100px;
-}
-
-html.lenis, html.lenis body {
-    height: auto;
-}
-.lenis.lenis-smooth {
-    scroll-behavior: auto !important;
-}
-.lenis.lenis-smooth [data-lenis-prevent] {
-    overscroll-behavior: contain;
-}
-.lenis.lenis-stopped {
-    overflow: hidden;
-}
-.lenis.lenis-smooth iframe {
-    pointer-events: none;
 }
 
 body {
@@ -194,20 +179,21 @@ nav a.nav-link:hover, nav a.nav-link.active {
     z-index: 1;
 }
 
-section {
+.contact-wrapper {
     min-height: 100vh;
-    padding: 120px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding-top: 80px;
 }
 
-.hero-content {
+.contact-hero {
     position: relative;
     z-index: 2;
 }
 
-.hero-content h1 {
+.contact-hero h1 {
     font-size: clamp(3.5rem, 8vw, 6rem);
     font-weight: 600;
     letter-spacing: -2.5px;
@@ -221,172 +207,103 @@ section {
 .subtitle {
     font-size: 1.35rem;
     color: var(--text-secondary);
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
     font-weight: 400;
     opacity: 0;
     animation: fade-in-up 0.8s ease 0.3s forwards;
-    max-width: 700px;
+    max-width: 500px;
 }
 
-.timezone {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    margin-bottom: 2.5rem;
-    font-weight: 500;
+.info-block {
+    margin-bottom: 2rem;
     opacity: 0;
     animation: fade-in-up 0.8s ease 0.4s forwards;
 }
 
-.timezone span {
-    color: var(--text-primary);
+.info-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    display: block;
 }
 
-.description {
-    max-width: 650px;
+.info-value {
     font-size: 1.1rem;
-    color: var(--text-secondary);
-    margin-bottom: 3rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.contact-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
     opacity: 0;
     animation: fade-in-up 0.8s ease 0.5s forwards;
 }
 
-.cta-group {
-    display: flex;
-    gap: 1rem;
-    opacity: 0;
-    animation: fade-in-up 0.8s ease 0.6s forwards;
-}
-
-.btn {
-    padding: 14px 28px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-primary {
-    background: var(--text-primary);
-    color: var(--bg-base);
-}
-
-.btn-primary::after {
-    content: "";
-    position: absolute;
-    top: 0; left: -100%; width: 50%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-    transform: skewX(-20deg);
-    transition: 0s;
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
-}
-
-.btn-primary:hover::after {
-    left: 200%;
-    transition: 0.6s ease-in-out;
-}
-
-.btn-secondary {
-    background: transparent;
-    color: var(--text-primary);
-    border: 1px solid var(--border);
-}
-
-.btn-secondary:hover {
-    background: var(--surface);
-    border-color: var(--border-hover);
-    transform: translateY(-2px);
-}
-
-.section-title {
-    font-size: 2.8rem;
-    font-weight: 600;
-    letter-spacing: -1.5px;
-    margin-bottom: 0.5rem;
-}
-
-.section-subtitle {
-    color: var(--text-secondary);
-    margin-bottom: 4rem;
-    font-size: 1.1rem;
-}
-
-.grid-3 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-
-.card {
+.contact-card {
     background: rgba(10, 10, 10, 0.6);
     backdrop-filter: blur(10px);
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 2.5rem;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
 }
 
-.card.visible {
-    opacity: 1;
-    transform: translateY(0);
+.contact-card svg {
+    margin-bottom: 1rem;
+    transition: transform 0.4s ease;
 }
 
-.card:hover {
+.contact-card::after {
+    content: '→';
+    position: absolute;
+    top: 50%;
+    right: 2.5rem;
+    transform: translateY(-50%) translateX(-10px);
+    color: var(--border-hover);
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.contact-card:hover {
     border-color: rgba(255,255,255,0.15);
     background: var(--surface-hover);
-    transform: translateY(-8px);
+    transform: translateY(-4px);
     box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
-.card h3 {
-    font-size: 1.3rem;
-    font-weight: 500;
+.contact-card:hover svg {
+    transform: scale(1.05);
+}
+
+.contact-card:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
     color: var(--text-primary);
-    margin-bottom: 1.5rem;
 }
 
-.card ul { list-style: none; }
-
-.card li {
-    padding: 8px 0;
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.card li::before {
-    content: '→';
-    color: var(--border-hover);
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.card:hover li { color: var(--text-primary); }
-.card:hover li::before { color: var(--text-primary); transform: translateX(4px); }
-
-.price-tier {
-    font-size: 1.6rem;
+.card-title {
+    font-size: 1.2rem;
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 1rem;
-    display: block;
 }
 
+.card-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+/* --- Footer Styles Added --- */
 .footer {
     border-top: 1px solid var(--border);
     padding: 2rem 0;
@@ -454,11 +371,20 @@ section {
 @keyframes fade-in-down { from { opacity: 0; transform: translateY(-15px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fade-in-up { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
 
+@media (max-width: 900px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding-top: 140px;
+        padding-bottom: 80px;
+        align-items: start;
+    }
+}
+
 @media (max-width: 768px) {
     .nav-links { display: none; }
-    section { padding: 100px 0; }
-    .cta-group { flex-direction: column; }
     .page-frame { display: none; }
+    .contact-card::after { display: none; }
     .footer-content { flex-direction: column; gap: 1.5rem; }
 }
 </style>
@@ -476,100 +402,50 @@ section {
 
 <nav>
     <div class="nav-container">
-        <a href="#home" class="nav-logo">Kaloyan Krastev</a>
+        <a href="index.html" class="nav-logo">Kaloyan Krastev</a>
         <div class="nav-links">
-            <a href="#home" class="nav-link active">Overview</a>
-            <a href="#services" class="nav-link">Capabilities</a>
-            <a href="#pricing" class="nav-link">Engagements</a>
+            <a href="index.html" class="nav-link">Overview</a>
+            <a href="index.html#services" class="nav-link">Capabilities</a>
+            <a href="index.html#pricing" class="nav-link">Engagements</a>
+            <a href="contacts.html" class="nav-link active">Contact</a>
         </div>
     </div>
 </nav>
 
 <div class="container">
-    <section id="home">
-        <div class="hero-content">
-            <h1>Software<br>Engineer</h1>
-            <p class="subtitle">Systems Architecture, Data Pipelines & Backend Infrastructure</p>
-            <p class="timezone">Local Time: <span id="local-time"></span></p>
-            <p class="description">
-                12-year-old developer specializing in high-performance automation and game systems. Focused on building robust data architectures, optimizing relational databases, and writing clean, scalable code in Python, Java, and Luau.
-            </p>
-            <div class="cta-group">
-                <a href="contacts.html" class="btn btn-primary">Contact Me</a>
-                <a href="#services" class="btn btn-secondary">View Capabilities</a>
+    <div class="contact-wrapper">
+        <div class="contact-hero">
+            <h1>Initiate<br>Connection</h1>
+            <p class="subtitle">Available for backend architecture consulting, data pipeline development, and core system optimization.</p>
+            
+            <div class="info-block">
+                <span class="info-label">Operating Timezone</span>
+                <span class="info-value">EEST (Europe/Sofia) — <span id="local-time"></span></span>
             </div>
-        </div>
-    </section>
 
-    <section id="services">
-        <h2 class="section-title">Capabilities</h2>
-        <p class="section-subtitle">Core technical competencies and stack boundaries.</p>
-        
-        <div class="grid-3">
-            <div class="card">
-                <h3>Backend & Systems</h3>
-                <ul>
-                    <li>Distributed Systems Logic</li>
-                    <li>Luau & Game Frameworks</li>
-                    <li>Cross-platform Automation</li>
-                    <li>CLI Tool Development</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3>Data Storage</h3>
-                <ul>
-                    <li>Relational Data Modeling</li>
-                    <li>High-concurrency SQL</li>
-                    <li>Database Migrations</li>
-                    <li>SQLite Integration</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3>Web Architecture</h3>
-                <ul>
-                    <li>Vanilla DOM Manipulation</li>
-                    <li>Responsive Interfaces</li>
-                    <li>Zero-dependency Builds</li>
-                    <li>Performance Optimization</li>
-                </ul>
+            <div class="info-block">
+                <span class="info-label">Current Status</span>
+                <span class="info-value" style="color: #7ee787;">Accepting new project proposals</span>
             </div>
         </div>
-    </section>
 
-    <section id="pricing">
-        <h2 class="section-title">Engagements</h2>
-        <p class="section-subtitle">Structure for freelance and open-source contributions.</p>
-        
-        <div class="grid-3">
-            <div class="card">
-                <h3>Scripting & Fixes</h3>
-                <span class="price-tier">Hourly</span>
-                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem;">Targeted debugging, environment hardening, and single-purpose automation scripts.</p>
-                <ul>
-                    <li>Bash / PowerShell</li>
-                    <li>Luau / Python Utilities</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3>System Architecture</h3>
-                <span class="price-tier">Project Base</span>
-                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem;">End-to-end design and implementation of backend services or database architectures.</p>
-                <ul>
-                    <li>Java / Game Plugins</li>
-                    <li>ETL Pipelines</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3>Terms & Logistics</h3>
-                <span class="price-tier">Policy</span>
-                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem;">Standard operational procedures for all technical engagements.</p>
-                <ul>
-                    <li>Strict Scope Definition</li>
-                    <li>Git-based Delivery</li>
-                </ul>
-            </div>
+        <div class="contact-cards">
+            <a href="https://t.me/Kaloyan1206" target="_blank" class="contact-card">
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor" style="color: #38bdf8;">
+                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.535.223l.188-2.623 4.823-4.35c.212-.19-.045-.295-.325-.11l-5.96 3.75-2.585-.81c-.56-.176-.575-.56.117-.83l10.096-3.89c.467-.176.877.106.72.678z"/>
+                </svg>
+                <span class="card-title">Telegram Direct</span>
+                <span class="card-desc">@Kaloyan1206</span>
+            </a>
+            <a href="https://discord.com/users/Kaloyan1206" target="_blank" class="contact-card">
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor" style="color: #5865F2;">
+                    <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+                </svg>
+                <span class="card-title">Discord Connect</span>
+                <span class="card-desc">@Kaloyan1206</span>
+            </a>
         </div>
-    </section>
+    </div>
 </div>
 
 <footer class="footer">
@@ -605,13 +481,6 @@ section {
 
     requestAnimationFrame(raf);
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            lenis.scrollTo(this.getAttribute('href'));
-        });
-    });
-
     const streamContainer = document.getElementById('stream-container');
     for (let i = 0; i < 6; i++) {
         let stream = document.createElement('div');
@@ -634,52 +503,12 @@ section {
         const formatter = new Intl.DateTimeFormat('en-US', timeOptions);
         const timeElement = document.getElementById("local-time");
         if(timeElement) {
-            timeElement.innerText = formatter.format(new Date()) + " EEST";
+            timeElement.innerText = formatter.format(new Date());
         }
     }
 
     updateSofiaTime();
     setInterval(updateSofiaTime, 1000);
-
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, index * 100);
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.card').forEach(el => {
-        observer.observe(el);
-    });
-
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    lenis.on('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 150;
-            const sectionHeight = section.clientHeight;
-            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
-            }
-        });
-    });
 </script>
 </body>
 </html>
