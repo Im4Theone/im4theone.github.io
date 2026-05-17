@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404: System Intercept | Kaloyan Krastev</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2265%%22 font-size=%2265%22 font-family=%22%27Inter%27, system-ui, sans-serif%22 font-weight=%22700%22 letter-spacing=%22-5%22 fill=%22%23ededed%22 text-anchor=%22middle%22>KK</text></svg>">
+<meta name="robots" content="noindex, follow">
+<style>
+:root {
+    --bg-base: #000000;
+    --text-primary: #ededed;
+    --text-secondary: #888888;
+    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+    background: rgba(126, 231, 135, 0.3);
+    color: var(--text-primary);
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+h1 {
+    font-size: clamp(4rem, 10vw, 8rem);
+    color: var(--text-primary);
+    font-weight: 600;
+    letter-spacing: -3px;
+    margin-bottom: 1rem;
+}
+
+p {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn {
+    padding: 14px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary {
+    background: var(--text-primary);
+    color: var(--bg-base);
+}
+
+.btn-primary::after {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+    transform: skewX(-20deg);
+    transition: 0s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+}
+
+.btn-primary:hover::after {
+    left: 200%;
+    transition: 0.6s ease-in-out;
+}
+
+@media (max-width: 768px) {
+    .cta-group { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<main class="container" style="min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+    <div style="text-align: center;">
+        <h1>404</h1>
+        <p>Requested data structure or resource pipeline could not be resolved by the server.</p>
+        <div class="cta-group">
+            <a href="index.html" class="btn btn-primary">Return to Core Overview</a>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

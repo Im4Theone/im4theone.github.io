@@ -3,19 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kaloyan Krastev | Software Engineer</title>
+<title>Kaloyan Krastev | Systems Architecture</title>
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2265%%22 font-size=%2265%22 font-family=%22%27Inter%27, system-ui, sans-serif%22 font-weight=%22700%22 letter-spacing=%22-5%22 fill=%22%2394a3b8%22 text-anchor=%22middle%22>KK</text></svg>">
+
+<meta name="description" content="Portfolio of Kaloyan Krastev, Software Engineer specializing in high-performance automation, game systems, and distributed backend architectures.">
+<meta name="keywords" content="Kaloyan Krastev, Software Engineer, Backend Developer, Systems Architecture, Luau, Python, Java, Automation, SQL">
+<meta name="author" content="Kaloyan Krastev">
+
+<meta property="og:site_name" content="Kaloyan Krastev Portfolio">
+<meta property="og:title" content="Kaloyan Krastev | Software Engineer">
+<meta property="og:description" content="Systems Architecture & Backend Infrastructure. Focused on high-performance automation and game engines.">
+<meta property="og:type" content="website">
+<meta property="og:theme-color" content="#070708">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Kaloyan Krastev",
+  "jobTitle": "Software Engineer",
+  "knowsAbout": ["Systems Architecture", "Backend Infrastructure", "Automation", "Python", "Java", "Luau", "SQL"],
+  "sameAs": [
+    "https://github.com/KaloyanSys32"
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
 :root {
-    --bg-base: #000000;
-    --surface: #0a0a0a;
-    --surface-hover: #121212;
-    --border: #222222;
-    --border-hover: #444444;
-    --text-primary: #ededed;
-    --text-secondary: #888888;
-    --accent-glow-1: rgba(126, 231, 135, 0.18);
-    --accent-glow-2: rgba(56, 189, 248, 0.18);
-    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --bg-base: #070708;
+    --surface-panel: #0c0c0e;
+    --border-subtle: #1a1a24;
+    --border-active: #2a2a35;
+    --text-heading: #e4e4e7;
+    --text-body: #94a3b8;
+    --text-muted: #475569;
+    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 * {
@@ -24,166 +53,82 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-padding-top: 100px;
-}
-
-html.lenis, html.lenis body {
-    height: auto;
-}
-.lenis.lenis-smooth {
-    scroll-behavior: auto !important;
-}
-.lenis.lenis-smooth [data-lenis-prevent] {
-    overscroll-behavior: contain;
-}
-.lenis.lenis-stopped {
-    overflow: hidden;
-}
-.lenis.lenis-smooth iframe {
-    pointer-events: none;
-}
-
 body {
     background-color: var(--bg-base);
-    color: var(--text-primary);
+    color: var(--text-body);
     font-family: var(--font-sans);
+    font-size: 16px;
     line-height: 1.6;
-    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
 }
 
-.page-frame {
-    position: fixed;
-    top: 0; bottom: 0;
-    left: 50%; transform: translateX(-50%);
-    width: 100%; max-width: 1140px;
-    border-left: 1px solid rgba(255,255,255,0.03);
-    border-right: 1px solid rgba(255,255,255,0.03);
-    z-index: 0;
-    pointer-events: none;
+::selection {
+    background: rgba(148, 163, 184, 0.1);
+    color: var(--text-heading);
 }
 
-.grid-bg {
-    position: fixed;
-    top: -50%; left: -50%;
-    width: 200%; height: 200%;
-    background-image: 
-        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-    background-size: 50px 50px;
-    z-index: -4;
-    animation: pan-grid 90s linear infinite;
-    pointer-events: none;
-    mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
-    -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
-}
-
-@keyframes pan-grid {
-    0% { transform: translateY(0) translateX(0); }
-    100% { transform: translateY(-50px) translateX(-50px); }
-}
-
-.ambient-blob {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(120px);
-    z-index: -3;
-    pointer-events: none;
-    animation: float-blob 20s infinite alternate ease-in-out;
-    will-change: transform;
-}
-
-.blob-1 {
-    top: 0%; left: 0%; width: 50vw; height: 50vw;
-    background: radial-gradient(circle, var(--accent-glow-1), transparent 70%);
-}
-
-.blob-2 {
-    bottom: -10%; right: 0%; width: 60vw; height: 60vw;
-    background: radial-gradient(circle, var(--accent-glow-2), transparent 70%);
-    animation-delay: -10s;
-}
-
-@keyframes float-blob {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(10%, 10%) scale(1.1); }
-}
-
-.stream-container {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    z-index: -2;
-    pointer-events: none;
-}
-
-.stream {
+.subtle-grid {
     position: absolute;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-    animation: shoot 4s linear infinite;
-    opacity: 0;
-    will-change: transform, opacity;
-}
-
-@keyframes shoot {
-    0% { transform: translateX(-100vw); opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { transform: translateX(100vw); opacity: 0; }
+    top: 0; left: 0; width: 100%; height: 700px;
+    background-image: linear-gradient(var(--border-subtle) 1px, transparent 1px), linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+    background-size: 56px 56px;
+    z-index: 0;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0));
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0));
+    opacity: 0.2;
 }
 
 nav {
     position: fixed;
     top: 0; left: 0; width: 100%;
     z-index: 1000;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(7, 7, 8, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-    padding: 1rem 0;
-    transition: background-color 0.3s ease;
+    border-bottom: 1px solid var(--border-subtle);
 }
 
 .nav-container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 2rem;
+    height: 64px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .nav-logo {
-    color: var(--text-primary);
+    color: var(--text-heading);
     text-decoration: none;
     font-weight: 600;
-    font-size: 1rem;
-    letter-spacing: -0.5px;
-    animation: fade-in 1s ease forwards;
+    font-size: 14px;
+    letter-spacing: -0.01em;
 }
 
 .nav-links {
     display: flex;
-    gap: 2.5rem;
+    gap: 2rem;
 }
 
 nav a.nav-link {
-    color: var(--text-secondary);
+    color: var(--text-body);
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 14px;
     font-weight: 500;
-    transition: color 0.2s ease;
-    opacity: 0;
-    animation: fade-in-down 0.6s ease forwards;
+    transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-nav a.nav-link:nth-child(1) { animation-delay: 0.1s; }
-nav a.nav-link:nth-child(2) { animation-delay: 0.2s; }
-nav a.nav-link:nth-child(3) { animation-delay: 0.3s; }
-
 nav a.nav-link:hover, nav a.nav-link.active {
-    color: var(--text-primary);
+    color: var(--text-heading);
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-heading);
+    cursor: pointer;
 }
 
 .container {
@@ -194,407 +139,452 @@ nav a.nav-link:hover, nav a.nav-link.active {
     z-index: 1;
 }
 
-section {
-    min-height: 100vh;
-    padding: 120px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.hero-section {
+    padding-top: 200px;
+    padding-bottom: 120px;
+    text-align: left;
 }
 
-.hero-content {
-    position: relative;
-    z-index: 2;
+.hero-section h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--text-heading);
+    max-width: 850px;
+    margin-bottom: 2rem;
 }
 
-.hero-content h1 {
-    font-size: clamp(3.5rem, 8vw, 6rem);
-    font-weight: 600;
-    letter-spacing: -2.5px;
-    margin-bottom: 1.5rem;
-    color: var(--text-primary);
-    line-height: 1.05;
-    opacity: 0;
-    animation: fade-in-up 0.8s ease 0.2s forwards;
-}
-
-.subtitle {
-    font-size: 1.35rem;
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
-    font-weight: 400;
-    opacity: 0;
-    animation: fade-in-up 0.8s ease 0.3s forwards;
+.hero-section p {
+    font-size: 19px;
+    color: var(--text-body);
     max-width: 700px;
-}
-
-.timezone {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    margin-bottom: 2.5rem;
-    font-weight: 500;
-    opacity: 0;
-    animation: fade-in-up 0.8s ease 0.4s forwards;
-}
-
-.timezone span {
-    color: var(--text-primary);
-}
-
-.description {
-    max-width: 650px;
-    font-size: 1.1rem;
-    color: var(--text-secondary);
     margin-bottom: 3rem;
-    opacity: 0;
-    animation: fade-in-up 0.8s ease 0.5s forwards;
 }
 
 .cta-group {
     display: flex;
+    justify-content: flex-start;
     gap: 1rem;
-    opacity: 0;
-    animation: fade-in-up 0.8s ease 0.6s forwards;
 }
 
 .btn {
-    padding: 14px 28px;
+    padding: 12px 24px;
     border-radius: 6px;
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 15px;
     font-weight: 500;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
 }
 
 .btn-primary {
-    background: var(--text-primary);
+    background: var(--text-heading);
     color: var(--bg-base);
 }
 
-.btn-primary::after {
-    content: "";
-    position: absolute;
-    top: 0; left: -100%; width: 50%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-    transform: skewX(-20deg);
-    transition: 0s;
-}
-
 .btn-primary:hover {
+    background: #ffffff;
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
-}
-
-.btn-primary:hover::after {
-    left: 200%;
-    transition: 0.6s ease-in-out;
 }
 
 .btn-secondary {
     background: transparent;
-    color: var(--text-primary);
-    border: 1px solid var(--border);
+    color: var(--text-heading);
+    border: 1px solid var(--border-subtle);
 }
 
 .btn-secondary:hover {
-    background: var(--surface);
-    border-color: var(--border-hover);
+    border-color: var(--border-active);
     transform: translateY(-2px);
 }
 
+.section-block {
+    padding: 100px 0;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.section-header {
+    margin-bottom: 4rem;
+}
+
+.section-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+}
+
 .section-title {
-    font-size: 2.8rem;
+    font-size: 24px;
     font-weight: 600;
-    letter-spacing: -1.5px;
+    color: var(--text-heading);
+    letter-spacing: -0.01em;
+}
+
+.component-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+
+.feature-layout-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.spec-card {
+    background: #09090b;
+    border: 1px solid #1a1a24;
+    border-radius: 6px;
+    padding: 2rem;
+    transition: border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spec-card:hover {
+    border-color: #252533;
+    transform: translateY(-4px);
+}
+
+.spec-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-heading);
     margin-bottom: 0.5rem;
 }
 
-.section-subtitle {
-    color: var(--text-secondary);
-    margin-bottom: 4rem;
-    font-size: 1.1rem;
+.spec-card p {
+    font-size: 14.5px;
+    color: var(--text-body);
 }
 
-.grid-3 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-
-.card {
-    background: rgba(10, 10, 10, 0.6);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--border);
+.product-card {
+    background: #0e0e11;
+    border: 1px solid #22222e;
     border-radius: 8px;
     padding: 2.5rem;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    position: relative;
-    overflow: hidden;
+    box-shadow: 0 4px 24px -8px rgba(0, 0, 0, 0.7);
+    transition: border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.card.visible {
-    opacity: 1;
-    transform: translateY(0);
+.product-card:hover {
+    border-color: #35354a;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.9);
 }
 
-.card:hover {
-    border-color: rgba(255,255,255,0.15);
-    background: var(--surface-hover);
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+.product-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-heading);
+    margin-bottom: 0.75rem;
 }
 
-.card h3 {
-    font-size: 1.3rem;
+.product-card p {
+    font-size: 15px;
+    color: var(--text-body);
+}
+
+.card-tags {
+    display: flex;
+    gap: 6px;
+    margin-top: 1.5rem;
+}
+
+.mini-tag {
+    font-family: var(--font-sans);
+    font-size: 13px;
     font-weight: 500;
-    color: var(--text-primary);
-    margin-bottom: 1.5rem;
+    background: #181822;
+    border: 1px solid #2d2d3f;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: #cbd5e1;
+    letter-spacing: -0.01em;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-.card ul { list-style: none; }
+.product-card:hover .mini-tag {
+    border-color: #3d3d54;
+    background: #1d1d29;
+}
 
-.card li {
-    padding: 8px 0;
-    color: var(--text-secondary);
-    font-size: 0.95rem;
+.tier-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.tier-card.highlight {
+    border-color: #2e2e3d;
+    background: linear-gradient(180deg, #121217 0%, #0e0e11 100%);
+    box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.8);
+}
+
+.tier-card.highlight:hover {
+    border-color: #3d3d52;
+}
+
+.tier-price {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-heading);
+    letter-spacing: -0.02em;
+    margin: 1.5rem 0;
+}
+
+.tier-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 2.5rem;
+}
+
+.tier-card li {
+    font-size: 15px;
     display: flex;
     align-items: center;
-    gap: 12px;
-    transition: transform 0.3s ease, color 0.3s ease;
+    gap: 8px;
+    color: var(--text-body);
 }
 
-.card li::before {
-    content: '→';
-    color: var(--border-hover);
-    transition: color 0.3s ease, transform 0.3s ease;
+.tier-card li::before {
+    content: '—';
+    color: var(--text-muted);
 }
 
-.card:hover li { color: var(--text-primary); }
-.card:hover li::before { color: var(--text-primary); transform: translateX(4px); }
-
-.price-tier {
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 1rem;
-    display: block;
+.tier-card .btn {
+    margin-top: auto;
+    width: 100%;
+    justify-content: center;
+    padding: 12px;
 }
 
-.footer {
-    border-top: 1px solid var(--border);
-    padding: 2rem 0;
-    margin-top: 4rem;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(10px);
-    position: relative;
-    z-index: 10;
+footer {
+    border-top: 1px solid var(--border-subtle);
+    padding: 3rem 0;
+    background: var(--bg-base);
 }
 
-.footer-content {
+.footer-wrapper {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
+    font-size: 14px;
 }
 
-.status-indicator {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.status-dot {
-    width: 8px;
-    height: 8px;
-    background-color: #7ee787;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #7ee787;
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
-}
-
-.footer-links {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-.footer-links a {
-    color: var(--text-primary);
+.btn-github {
+    background: #0f0f13;
+    border: 1px solid #22222e;
+    color: var(--text-heading);
+    padding: 10px 18px;
+    border-radius: 6px;
     text-decoration: none;
-    transition: color 0.2s ease;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.footer-links a:hover {
-    color: var(--accent-glow-2);
+.btn-github:hover {
+    background: #14141a;
+    border-color: #35354a;
+    transform: translateY(-2px);
 }
 
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--bg-base); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
+.btn-github svg {
+    fill: currentColor;
+}
 
-@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
-@keyframes fade-in-down { from { opacity: 0; transform: translateY(-15px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fade-in-up { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
+.hero-section, .section-block {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.47s cubic-bezier(0.215, 0.610, 0.355, 1.000), transform 0.47s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    will-change: transform, opacity;
+}
+
+.hero-section.visible, .section-block.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+    .component-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
 
 @media (max-width: 768px) {
-    .nav-links { display: none; }
-    section { padding: 100px 0; }
-    .cta-group { flex-direction: column; }
-    .page-frame { display: none; }
-    .footer-content { flex-direction: column; gap: 1.5rem; }
+    .menu-toggle { display: block; }
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 64px; left: 0; width: 100%; height: calc(100vh - 64px);
+        background: var(--bg-base);
+        padding: 2rem;
+        gap: 1.5rem;
+        border-top: 1px solid var(--border-subtle);
+    }
+    .nav-links.open { display: flex; }
+    .feature-layout-2 { grid-template-columns: 1fr; }
+    .hero-section { padding-top: 160px; }
+    .footer-wrapper { flex-direction: column; gap: 1.5rem; text-align: center; }
 }
 </style>
 <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
 </head>
 <body>
 
-<div class="page-frame"></div>
-
-<div class="grid-bg"></div>
-<div class="ambient-blob blob-1"></div>
-<div class="ambient-blob blob-2"></div>
-
-<div class="stream-container" id="stream-container"></div>
+<div class="subtle-grid"></div>
 
 <nav>
     <div class="nav-container">
-        <a href="#home" class="nav-logo">Kaloyan Krastev</a>
-        <div class="nav-links">
-            <a href="#home" class="nav-link active">Overview</a>
-            <a href="#services" class="nav-link">Capabilities</a>
-            <a href="#pricing" class="nav-link">Engagements</a>
+        <a href="#home" class="nav-logo">KALOYAN KRASTEV</a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+        <div class="nav-links" id="nav-links">
+            <a href="#features" class="nav-link">Capabilities</a>
+            <a href="#production" class="nav-link">Production</a>
+            <a href="#pricing" class="nav-link">Deployments</a>
+            <a href="contacts.html" class="nav-link">Contact</a>
         </div>
     </div>
 </nav>
 
-<div class="container">
-    <section id="home">
-        <div class="hero-content">
-            <h1>Software<br>Engineer</h1>
-            <p class="subtitle">Systems Architecture, Data Pipelines & Backend Infrastructure</p>
-            <p class="timezone">Local Time: <span id="local-time"></span></p>
-            <p class="description">
-                12-year-old developer specializing in high-performance automation and game systems. Focused on building robust data architectures, optimizing relational databases, and writing clean, scalable code in Python, Java, and Luau.
-            </p>
-            <div class="cta-group">
-                <a href="contacts.html" class="btn btn-primary">Contact Me</a>
-                <a href="#services" class="btn btn-secondary">View Capabilities</a>
+<main class="container">
+    <section class="hero-section" id="home">
+        <h1>High-performance automation logic and backend infrastructure.</h1>
+        <p>Engineered by Kaloyan Krastev. Scalable system architectures, clean database migration pipelines, and performance-tuned software scripts built for processing speed.</p>
+        <div class="cta-group">
+            <a href="contacts.html" class="btn btn-primary">Get in Touch</a>
+            <a href="#features" class="btn btn-secondary">Explore Capabilities</a>
+        </div>
+    </section>
+
+    <section class="section-block" id="features">
+        <div class="section-header">
+            <h2 class="section-title">Core Capabilities</h2>
+        </div>
+        <div class="component-grid">
+            <div class="spec-card">
+                <h3>Backend Engineering</h3>
+                <p>Distributed computing logic layers and decoupled event handling infrastructure written in Python, Java, and Luau.</p>
+            </div>
+            <div class="spec-card">
+                <h3>Data Architecture</h3>
+                <p>High-concurrency relational schema modeling, database transactional safety, and embedded SQLite optimizations.</p>
+            </div>
+            <div class="spec-card">
+                <h3>System Automation</h3>
+                <p>Cross-platform system utilities and command-line automation engines tailored for resource optimization.</p>
             </div>
         </div>
     </section>
 
-    <section id="services">
-        <h2 class="section-title">Capabilities</h2>
-        <p class="section-subtitle">Core technical competencies and stack boundaries.</p>
-        
-        <div class="grid-3">
-            <div class="card">
-                <h3>Backend & Systems</h3>
-                <ul>
-                    <li>Distributed Systems Logic</li>
-                    <li>Luau & Game Frameworks</li>
-                    <li>Cross-platform Automation</li>
-                    <li>CLI Tool Development</li>
-                </ul>
+    <section class="section-block" id="production">
+        <div class="section-header">
+            <h2 class="section-title">Production Projects</h2>
+        </div>
+        <div class="feature-layout-2">
+            <div class="product-card">
+                <h3>Asynchronous Task Engine</h3>
+                <p>A high-throughput concurrent runner designed for distributing OS tasks efficiently alongside pooled database interactions.</p>
+                <div class="card-tags">
+                    <span class="mini-tag">Python</span>
+                    <span class="mini-tag">SQLite</span>
+                    <span class="mini-tag">Asyncio</span>
+                </div>
             </div>
-            <div class="card">
-                <h3>Data Storage</h3>
-                <ul>
-                    <li>Relational Data Modeling</li>
-                    <li>High-concurrency SQL</li>
-                    <li>Database Migrations</li>
-                    <li>SQLite Integration</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3>Web Architecture</h3>
-                <ul>
-                    <li>Vanilla DOM Manipulation</li>
-                    <li>Responsive Interfaces</li>
-                    <li>Zero-dependency Builds</li>
-                    <li>Performance Optimization</li>
-                </ul>
+            <div class="product-card">
+                <h3>Decoupled Server Architecture</h3>
+                <p>A modular server logic layer structured to reduce data packet overhead footprints securely inside game engine environments.</p>
+                <div class="card-tags">
+                    <span class="mini-tag">Luau</span>
+                    <span class="mini-tag">Framework</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="pricing">
-        <h2 class="section-title">Engagements</h2>
-        <p class="section-subtitle">Structure for freelance and open-source contributions.</p>
-        
-        <div class="grid-3">
-            <div class="card">
-                <h3>Scripting & Fixes</h3>
-                <span class="price-tier">Hourly</span>
-                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem;">Targeted debugging, environment hardening, and single-purpose automation scripts.</p>
+    <section class="section-block" id="pricing">
+        <div class="section-header">
+            <h2 class="section-title">Engagement Models</h2>
+        </div>
+        <div class="component-grid">
+            <div class="product-card tier-card">
+                <h3>Scripting & Optimization</h3>
+                <p>Environment analysis, targeted performance tuning, and specific execution modules.</p>
+                <div class="tier-price">Hourly</div>
                 <ul>
-                    <li>Bash / PowerShell</li>
-                    <li>Luau / Python Utilities</li>
+                    <li>OS Shell Automation</li>
+                    <li>PowerShell & Bash Utilities</li>
+                    <li>Isolated System Refactors</li>
                 </ul>
+                <a href="contacts.html" class="btn btn-secondary">Request Consultation</a>
             </div>
-            <div class="card">
-                <h3>System Architecture</h3>
-                <span class="price-tier">Project Base</span>
-                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem;">End-to-end design and implementation of backend services or database architectures.</p>
+            <div class="product-card tier-card highlight">
+                <h3>Core Architecture</h3>
+                <p>End-to-end backend service engineering, API layout development, and database infrastructure scaling.</p>
+                <div class="tier-price">Project</div>
                 <ul>
-                    <li>Java / Game Plugins</li>
-                    <li>ETL Pipelines</li>
+                    <li>Java & Python REST APIs</li>
+                    <li>Relational Database Layouts</li>
+                    <li>Distributed Workflow Logic</li>
                 </ul>
+                <a href="contacts.html" class="btn btn-primary">Initialize Project</a>
             </div>
-            <div class="card">
-                <h3>Terms & Logistics</h3>
-                <span class="price-tier">Policy</span>
-                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem;">Standard operational procedures for all technical engagements.</p>
+            <div class="product-card tier-card">
+                <h3>Operational Terms</h3>
+                <p>Static delivery boundaries, direct console reporting, and code transition mechanics.</p>
+                <div class="tier-price">Protocol</div>
                 <ul>
-                    <li>Strict Scope Definition</li>
-                    <li>Git-based Delivery</li>
+                    <li>Strict Git-Based Deliveries</li>
+                    <li>Defined Project Parameters</li>
+                    <li>Direct Execution Logs</li>
                 </ul>
+                <a href="contacts.html" class="btn btn-secondary">Review Guidelines</a>
             </div>
         </div>
     </section>
-</div>
+</main>
 
-<footer class="footer">
-    <div class="footer-content">
-        <div class="status-indicator">
-            <div class="status-dot"></div>
-            <span>System Status: Operational</span>
-        </div>
+<footer>
+    <div class="footer-wrapper">
+        <p>© 2026 Kaloyan Krastev. All rights reserved.</p>
         <div class="footer-links">
-            <a href="https://github.com/KaloyanSys32" target="_blank">GitHub Repository</a>
-            <span>© 2026 Kaloyan Krastev</span>
+            <a href="https://github.com/KaloyanSys32" target="_blank" class="btn-github">
+                <svg width="16" height="16" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                GitHub
+            </a>
         </div>
     </div>
 </footer>
 
 <script>
     const lenis = new Lenis({
-        duration: 1.2,
+        duration: 1.17,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         direction: 'vertical',
         gestureDirection: 'vertical',
         smooth: true,
-        mouseMultiplier: 1,
+        mouseMultiplier: 0.8,
         smoothTouch: false,
-        touchMultiplier: 2,
+        touchMultiplier: 1.5,
         infinite: false,
     });
 
@@ -602,73 +592,55 @@ section {
         lenis.raf(time);
         requestAnimationFrame(raf);
     }
-
     requestAnimationFrame(raf);
+
+    const toggleBtn = document.getElementById('menu-toggle');
+    const navLinksContainer = document.getElementById('nav-links');
+    
+    toggleBtn.addEventListener('click', () => {
+        navLinksContainer.classList.toggle('open');
+    });
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            lenis.scrollTo(this.getAttribute('href'));
+            navLinksContainer.classList.remove('open');
+            const targetID = this.getAttribute('href');
+            lenis.scrollTo(targetID, { offset: -70 });
         });
     });
 
-    const streamContainer = document.getElementById('stream-container');
-    for (let i = 0; i < 6; i++) {
-        let stream = document.createElement('div');
-        stream.classList.add('stream');
-        stream.style.top = Math.random() * 100 + 'vh';
-        stream.style.width = (Math.random() * 100 + 50) + 'px';
-        stream.style.animationDuration = (Math.random() * 3 + 2) + 's';
-        stream.style.animationDelay = (Math.random() * 10) + 's';
-        streamContainer.appendChild(stream);
-    }
-
-    function updateSofiaTime() {
-        const timeOptions = { 
-            timeZone: 'Europe/Sofia', 
-            hour: '2-digit', 
-            minute: '2-digit', 
-            second: '2-digit', 
-            hour12: false 
-        };
-        const formatter = new Intl.DateTimeFormat('en-US', timeOptions);
-        const timeElement = document.getElementById("local-time");
-        if(timeElement) {
-            timeElement.innerText = formatter.format(new Date()) + " EEST";
-        }
-    }
-
-    updateSofiaTime();
-    setInterval(updateSofiaTime, 1000);
-
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.02,
+        rootMargin: '0px 0px -20px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
+        entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, index * 100);
+                entry.target.classList.add('visible');
             }
         });
     }, observerOptions);
 
-    document.querySelectorAll('.card').forEach(el => {
+    document.querySelectorAll('.section-block, .hero-section').forEach(el => {
         observer.observe(el);
     });
 
-    const sections = document.querySelectorAll('section');
+    const targetSections = document.querySelectorAll('#home, #features, #production, #pricing');
     const navLinks = document.querySelectorAll('.nav-link');
 
     lenis.on('scroll', () => {
         let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 150;
+        const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+
+        targetSections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            const absoluteTop = rect.top + scrollPosition;
+            const sectionTop = absoluteTop - 150;
             const sectionHeight = section.clientHeight;
-            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
                 current = section.getAttribute('id');
             }
         });
