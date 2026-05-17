@@ -1,0 +1,31 @@
+{
+  "version": "v1.2.0",
+  "date": "2026-05-17",
+  "title": "Index Page Refactor, Scroll Geometry Correction, and Architecture Manifest Integration",
+  "commits": [
+    {
+      "type": "fix",
+      "body": "Resolved the broken scroll-spy navigation bug by refactoring coordinate tracking from relative parent offsetTop calculations to absolute document layout dimensions using getBoundingClientRect() aggregated with window.scrollY."
+    },
+    {
+      "type": "fix",
+      "body": "Fixed navigation intersection targeting exceptions by repositioning the home ID anchor string directly onto the hero section element block, ensuring immediate viewport recognition upon page initialization."
+    },
+    {
+      "type": "add",
+      "body": "Integrated Google Fonts preconnect and style asset delivery networks in the head element to load Inter typography configurations natively across client systems."
+    },
+    {
+      "type": "add",
+      "body": "Introduced a static manifest-container layout component into the top-of-fold view to cleanly outline the infrastructure parameters and core development runtime environments."
+    },
+    {
+      "type": "opt",
+      "body": "Overhauled the hero-section layout template from a single text block wrapper into a highly responsive two-column grid structure utilizing clamp typography controls and strict element separation rules."
+    },
+    {
+      "type": "opt",
+      "body": "Refactored the core smooth scrolling scripts to explicitly bind target query arrays across defined system containers, standardizing animation calculations throughout the scrolling sequence."
+    }
+  ]
+}
