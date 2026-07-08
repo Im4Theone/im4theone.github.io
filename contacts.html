@@ -1,548 +1,544 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact | Kaloyan Krastev</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Kaloyan Krastev</title>
 
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2265%%22 font-size=%2265%22 font-family=%22%27Inter%27, system-ui, sans-serif%22 font-weight=%22700%22 letter-spacing=%22-5%22 fill=%22%2394a3b8%22 text-anchor=%22middle%22>KK</text></svg>">
+    <!-- Original Favicon Configuration -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2265%%22 font-size=%2265%22 font-family=%22monospace%22 font-weight=%22700%22 letter-spacing=%22-5%22 fill=%22%23ff5502%22 text-anchor=%22middle%22>KK</text></svg>">
 
-<meta name="description" content="Initialize a connection for custom backend development, automation scripting, and systems architecture engineering.">
-<meta name="author" content="Kaloyan Krastev">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Pure Nothing OS Monochromatic & Industrial Orange Variables */
+        :root {
+            --bg-main: #000000;          
+            --text-primary: #ffffff;     
+            --text-secondary: #666666;   
+            --border-industrial: #222222;
+            --accent-red: #ff0000;       
+            --accent-orange: #ff5502;    
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-dot: 'Share Tech Mono', monospace;
+            --transition-tactile: 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+            --transition-spring: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
 
-<style>
-:root {
-    --bg-base: #070708;
-    --surface-panel: #0e0e11;
-    --border-subtle: #1a1a24;
-    --border-active: #2a2a35;
-    --border-input: #22222e;
-    --border-focus: #3a3a4e;
-    --text-heading: #e4e4e7;
-    --text-body: #94a3b8;
-    --text-muted: #475569;
-    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-}
+        /* Light Theme Token Overrides */
+        body.light-theme {
+            --bg-main: #ffffff;          
+            --text-primary: #000000;     
+            --text-secondary: #777777;   
+            --border-industrial: #e5e5e5;
+            --accent-orange: #d14300;    
+        }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-body {
-    background-color: var(--bg-base);
-    color: var(--text-body);
-    font-family: var(--font-sans);
-    font-size: 16px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-}
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            -webkit-font-smoothing: antialiased;
+            letter-spacing: -0.01em;
+            transition: background-color var(--transition-tactile), color var(--transition-tactile);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-::selection {
-    background: rgba(148, 163, 184, 0.1);
-    color: var(--text-heading);
-}
+        body.light-theme .lang-menu,
+        body.light-theme .contact-row {
+            background: #fafafa;
+        }
 
-.subtle-grid {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 700px;
-    background-image: linear-gradient(var(--border-subtle) 1px, transparent 1px), linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
-    background-size: 56px 56px;
-    z-index: 0;
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0));
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0));
-    opacity: 0.2;
-}
+        body.light-theme .lang-option-btn:hover {
+            background: #f0f0f2;
+        }
 
-nav {
-    position: fixed;
-    top: 0; left: 0; width: 100%;
-    z-index: 1000;
-    background: rgba(7, 7, 8, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border-subtle);
-}
+        body.light-theme .lang-option-btn.active {
+            background: rgba(209, 67, 0, 0.08);
+        }
 
-.nav-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    height: 64px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        /* Pinned Tactile Top Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-industrial);
+            z-index: 1000;
+            transition: background-color var(--transition-tactile), border-color var(--transition-tactile), transform 0.4s ease;
+            animation: navSlideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transform: translateY(-100%);
+        }
 
-.nav-logo {
-    color: var(--text-heading);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: -0.01em;
-}
+        @keyframes navSlideDown {
+            to { transform: translateY(0); }
+        }
 
-.nav-links {
-    display: flex;
-    gap: 2rem;
-}
+        body.light-theme .navbar {
+            background: rgba(255, 255, 255, 0.85);
+        }
 
-nav a.nav-link {
-    color: var(--text-body);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
+        .nav-logo {
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-nav a.nav-link:hover, nav a.nav-link.active {
-    color: var(--text-heading);
-}
+        .nav-logo::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            background: var(--accent-red);
+            border-radius: 50%;
+        }
 
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--text-heading);
-    cursor: pointer;
-}
+        .nav-right-container {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
 
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    position: relative;
-    z-index: 1;
-}
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
 
-.contact-section {
-    padding-top: 180px;
-    padding-bottom: 120px;
-    display: grid;
-    grid-template-columns: 4fr 5fr;
-    gap: 5rem;
-}
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            transition: color var(--transition-tactile);
+        }
 
-.contact-meta h1 {
-    font-size: clamp(2.25rem, 5vw, 3.25rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.15;
-    color: var(--text-heading);
-    margin-bottom: 1.5rem;
-}
+        .nav-links a:hover {
+            color: var(--accent-orange);
+        }
 
-.contact-meta p {
-    font-size: 17px;
-    color: var(--text-body);
-    margin-bottom: 2.5rem;
-}
+        .lang-dropdown-wrapper {
+            position: relative;
+            border-left: 1px solid var(--border-industrial);
+            padding-left: 1.5rem;
+            transition: border-color var(--transition-tactile);
+        }
 
-.info-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
+        .lang-trigger-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: color var(--transition-tactile);
+        }
 
-.info-item {
-    display: flex;
-    flex-direction: column;
-}
+        .lang-trigger-btn:hover {
+            color: var(--text-primary);
+        }
 
-.info-item span.label {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    letter-spacing: 0.05em;
-    margin-bottom: 0.25rem;
-}
+        .lang-menu {
+            position: absolute;
+            top: calc(100% + 1rem);
+            right: 0;
+            background: #0a0a0a;
+            border: 1px solid var(--border-industrial);
+            border-radius: 8px;
+            padding: 0.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            min-width: 80px;
+            opacity: 0;
+            transform: translateY(-8px) scale(0.95);
+            pointer-events: none;
+            transition: opacity var(--transition-tactile), transform var(--transition-tactile);
+        }
 
-.info-item a, .info-item span.value {
-    color: var(--text-heading);
-    font-size: 16px;
-    text-decoration: none;
-    font-weight: 500;
-    width: fit-content;
-}
+        .lang-dropdown-wrapper.open .lang-menu {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
 
-.info-item a:hover {
-    color: #ffffff;
-}
+        .lang-option-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-align: left;
+            padding: 0.4rem 0.6rem;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background var(--transition-tactile), color var(--transition-tactile);
+        }
 
-.btn-telegram {
-    background: #0f0f13;
-    border: 1px solid #22222e;
-    color: var(--text-heading);
-    padding: 12px 20px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    width: fit-content;
-    margin-top: 0.5rem;
-    position: relative;
-    box-shadow: 0 0 15px rgba(228, 228, 231, 0.03);
-    transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
+        .lang-option-btn:hover {
+            background: #141414;
+            color: var(--text-primary);
+        }
 
-.btn-telegram::after {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    border-radius: 6px;
-    padding: 1px;
-    background: linear-gradient(to bottom, rgba(228, 228, 231, 0.1), transparent);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-}
+        .lang-option-btn.active {
+            color: var(--accent-orange);
+            background: rgba(255, 85, 2, 0.08);
+            pointer-events: none;
+        }
 
-.btn-telegram:hover {
-    background: #14141a;
-    border-color: #475569;
-    transform: translateY(-2px);
-    box-shadow: 0 0 25px rgba(228, 228, 231, 0.08), 0 0 4px rgba(228, 228, 231, 0.1);
-}
+        /* Container Configuration */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 10rem 2rem 4rem 2rem;
+        }
 
-.btn-telegram svg {
-    fill: currentColor;
-}
+        /* Spring-driven layout entry */
+        .animate-fade-up {
+            opacity: 0;
+            transform: translateY(15px);
+            animation: hardwareReveal var(--transition-spring) forwards;
+        }
 
-.form-wrapper {
-    background: var(--surface-panel);
-    border: 1px solid var(--border-input);
-    border-radius: 8px;
-    padding: 3rem;
-    box-shadow: 0 4px 24px -8px rgba(0, 0, 0, 0.7);
-}
+        .page-header h1 {
+            animation-delay: 0.1s;
+        }
 
-.form-group {
-    margin-bottom: 2rem;
-    display: flex;
-    flex-direction: column;
-}
+        .page-header p {
+            animation-delay: 0.15s;
+        }
 
-.form-group label {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text-heading);
-    margin-bottom: 0.75rem;
-}
+        .contact-stack {
+            animation-delay: 0.2s;
+        }
 
-.form-control {
-    background: #08080a;
-    border: 1px solid var(--border-input);
-    border-radius: 6px;
-    padding: 14px 16px;
-    color: var(--text-heading);
-    font-family: var(--font-sans);
-    font-size: 15px;
-    width: 100%;
-    outline: none;
-    transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
+        @keyframes hardwareReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-.form-control:focus {
-    border-color: var(--border-focus);
-    box-shadow: 0 0 0 1px rgba(228, 228, 231, 0.05);
-}
+        .page-header {
+            margin-bottom: 4rem;
+        }
 
-textarea.form-control {
-    resize: none;
-    min-height: 140px;
-}
+        .page-header h1 {
+            font-family: var(--font-dot);
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: 0.02em;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            color: var(--accent-orange);
+        }
 
-.btn-submit {
-    background: var(--text-heading);
-    color: var(--bg-base);
-    border: none;
-    padding: 14px 28px;
-    border-radius: 6px;
-    font-size: 15px;
-    font-weight: 600;
-    font-family: var(--font-sans);
-    cursor: pointer;
-    width: 100%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
+        .page-header p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
 
-.btn-submit:hover:not(:disabled) {
-    background: #ffffff;
-    transform: translateY(-2px);
-}
+        /* Modular Industrial Hardware Widget Stack */
+        .contact-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
 
-.btn-submit:disabled {
-    background: var(--text-muted);
-    color: var(--surface-panel);
-    cursor: not-allowed;
-    transform: none;
-}
+        .contact-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #0a0a0a;
+            border: 1px solid var(--border-industrial);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            
+            /* Setting up the mechanical physics loop */
+            transition: border-color var(--transition-tactile), background var(--transition-tactile), transform var(--transition-spring);
+            transform-origin: center center;
+        }
 
-.status-message {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    margin-top: 1rem;
-    text-align: center;
-}
+        .contact-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            transition: color var(--transition-tactile);
+        }
 
-.status-message.error { color: #ef4444; }
-.status-message.success { color: #22c55e; }
+        .contact-value {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
 
-footer {
-    border-top: 1px solid var(--border-subtle);
-    padding: 3rem 0;
-    background: var(--bg-base);
-    position: relative;
-    z-index: 1;
-}
+        /* Snappy hardware hover response updates */
+        .contact-row:hover {
+            border-color: var(--accent-orange);
+            background: rgba(255, 85, 2, 0.01);
+            transform: scale(1.015);
+        }
+        body.light-theme .contact-row:hover {
+            background: rgba(209, 67, 0, 0.01);
+        }
 
-.footer-wrapper {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 14px;
-}
+        .contact-row:hover .contact-label {
+            color: var(--accent-orange);
+        }
 
-.btn-github {
-    background: #0f0f13;
-    border: 1px solid #22222e;
-    color: var(--text-heading);
-    padding: 10px 18px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
+        .contact-row:active {
+            transform: scale(0.99);
+            transition: transform 0.05s ease;
+        }
 
-.btn-github:hover {
-    background: #14141a;
-    border-color: #35354a;
-    transform: translateY(-2px);
-}
+        /* Nothing OS Capsule Toast Alert */
+        .toast-card {
+            position: fixed;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffffff;
+            color: #000000;
+            padding: 0.6rem 1.5rem;
+            border-radius: 24px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            transition: bottom var(--transition-spring), opacity var(--transition-tactile);
+        }
+        body.light-theme .toast-card {
+            background: #000000;
+            color: #ffffff;
+        }
 
-.btn-github svg {
-    fill: currentColor;
-}
+        .toast-card.active {
+            bottom: 2.5rem;
+            opacity: 1;
+        }
 
-.contact-meta, .form-wrapper {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.47s cubic-bezier(0.215, 0.610, 0.355, 1.000), transform 0.47s cubic-bezier(0.215, 0.610, 0.355, 1.000);
-    will-change: transform, opacity;
-}
-
-.contact-meta.visible, .form-wrapper.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-@media (max-width: 900px) {
-    .contact-section { grid-template-columns: 1fr; gap: 4rem; padding-top: 140px; }
-    .form-wrapper { padding: 2rem; }
-}
-
-@media (max-width: 768px) {
-    .menu-toggle { display: block; }
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        position: fixed;
-        top: 64px; left: 0; width: 100%; height: calc(100vh - 64px);
-        background: var(--bg-base);
-        padding: 2rem;
-        gap: 1.5rem;
-        border-top: 1px solid var(--border-subtle);
-    }
-    .nav-links.open { display: flex; }
-    .footer-wrapper { flex-direction: column; gap: 1.5rem; text-align: center; }
-}
-</style>
-<script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+        @media (max-width: 768px) {
+            .contact-row { flex-direction: column; align-items: flex-start; gap: 0.5rem; padding: 1.25rem 1.5rem; border-radius: 8px; }
+            .nav-right-container { gap: 1.5rem; }
+            .lang-dropdown-wrapper { padding-left: 0.75rem; }
+            .nav-links { gap: 1.25rem; }
+        }
+    </style>
 </head>
 <body>
 
-<div class="subtle-grid"></div>
-
-<nav>
-    <div class="nav-container">
-        <a href="index.html#home" class="nav-logo">KALOYAN KRASTEV</a>
-        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="3" y1="12" x2="21" y2="12"></line>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <line x1="3" y1="18" x2="21" y2="18"></line>
-            </svg>
-        </button>
-        <div class="nav-links" id="nav-links">
-            <a href="index.html#features" class="nav-link">Capabilities</a>
-            <a href="index.html#production" class="nav-link">Production</a>
-            <a href="index.html#pricing" class="nav-link">Deployments</a>
-            <a href="contacts.html" class="nav-link active">Contact</a>
-        </div>
-    </div>
-</nav>
-
-<main class="container">
-    <section class="contact-section">
-        <div class="contact-meta">
-            <h1>System Transmission Protocol</h1>
-            <p>Open an uplink to execute custom development requests, automation scripting, or core infrastructure deployments. Telemetry analysis normally completes within one business day.</p>
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">Kaloyan Krastev</a>
+        <div class="nav-right-container">
+            <div class="nav-links">
+                <a href="index.html#projects" id="lnk-capabilities">Capabilities</a>
+                <a href="changelog.html" id="lnk-changelog">Changelog</a>
+                <a href="contacts.html" id="lnk-contact">Contact</a>
+            </div>
             
-            <div class="info-list">
-                <div class="info-item">
-                    <span class="label">Primary Node</span>
-                    <span class="value">kaloyankrastev2013@gmail.com</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Source Registry</span>
-                    <a href="https://github.com/KaloyanSys32" target="_blank">github.com/KaloyanSys32</a>
-                </div>
-                <div class="info-item">
-                    <span class="label">Secure Channel</span>
-                    <a href="https://t.me/Im4TheOne" target="_blank" class="btn-telegram">
-                        <svg width="16" height="16" viewBox="0 0 24 24">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-1-.65-.35-1 .22-1.62.15-.15 2.7-2.48 2.75-2.7.01-.03.01-.14-.06-.2-.07-.06-.17-.04-.25-.02-.11.02-1.83 1.16-5.16 3.42-.49.34-.93.51-1.33.5-.44-.01-1.3-.25-1.93-.46-.78-.25-1.4-.39-1.35-.83.03-.23.35-.46.96-.71 3.76-1.64 6.27-2.72 7.54-3.25 3.58-1.48 4.32-1.74 4.81-1.75.11 0 .35.03.5.16.13.11.17.26.19.37z"/>
-                        </svg>
-                        Telegram
-                    </a>
-                </div>
-                <div class="info-item" style="margin-top: 0.5rem;">
-                    <span class="label">Availability Status</span>
-                    <span class="value">Active For Projects</span>
+            <div class="lang-dropdown-wrapper" id="langDropdown">
+                <button class="lang-trigger-btn" onclick="toggleLangMenu(event)" id="activeLangLabel">EN</button>
+                <div class="lang-menu">
+                    <button class="lang-option-btn" onclick="switchLanguage('en')" id="btn-lang-en">EN</button>
+                    <button class="lang-option-btn" onclick="switchLanguage('bg')" id="btn-lang-bg">BG</button>
+                    <button class="lang-option-btn" onclick="switchLanguage('ru')" id="btn-lang-ru">RU</button>
                 </div>
             </div>
         </div>
+    </nav>
 
-        <div class="form-wrapper">
-            <form id="email-form" action="https://api.web3forms.com/submit" method="POST">
-                <input type="hidden" name="access_key" value="86951a24-f6cb-487c-b3ae-fc09613e20bb">
-                <input type="hidden" name="subject" value="New Portfolio System Transmission">
-                <input type="hidden" name="from_name" value="Portfolio System Architecture">
-                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+    <main class="container">
+        <header class="page-header">
+            <h1 id="hdr-title" class="animate-fade-up">Communications</h1>
+            <p id="hdr-desc" class="animate-fade-up">Connect for systems architecture planning, full-stack utility development, or infrastructure auditing.</p>
+        </header>
 
-                <div class="form-group">
-                    <label for="identity">Source Identifier</label>
-                    <input type="text" id="identity" name="name" class="form-control" placeholder="name_or_organization" required autocomplete="off">
-                </div>
-                <div class="form-group">
-                    <label for="endpoint">Your Email</label>
-                    <input type="email" id="endpoint" name="email" class="form-control" placeholder="client_mx@domain.com" required autocomplete="off">
-                </div>
-                <div class="form-group">
-                    <label for="specification">Project Parameters</label>
-                    <textarea id="specification" name="message" class="form-control" placeholder="Provide system scopes, structural dependencies, or automation criteria..." required></textarea>
-                </div>
-                <button type="submit" id="submit-btn" class="btn-submit">Transmit Email Protocol</button>
-                <div id="email-status" class="status-message"></div>
-            </form>
-        </div>
-    </section>
-</main>
-
-<footer>
-    <div class="footer-wrapper">
-        <p>© 2026 Kaloyan Krastev. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="https://github.com/KaloyanSys32" target="_blank" class="btn-github">
-                <svg width="16" height="16" viewBox="0 0 24 24">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                </svg>
-                GitHub
+        <section class="contact-stack animate-fade-up">
+            <a href="https://github.com/kaloyansys32" target="_blank" rel="noopener noreferrer" class="contact-row">
+                <span class="contact-label" id="lbl-source">Source Control</span>
+                <span class="contact-value">github.com/kaloyansys32</span>
             </a>
-        </div>
-    </div>
-</footer>
 
-<script>
-    const lenis = new Lenis({
-        duration: 1.17,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        direction: 'vertical',
-        gestureDirection: 'vertical',
-        smooth: true,
-        mouseMultiplier: 0.8,
-        smoothTouch: false,
-        touchMultiplier: 1.5,
-        infinite: false,
-    });
+            <div class="contact-row" onclick="copyEmailAddress(this)">
+                <span class="contact-label" id="lbl-email">Email Interface</span>
+                <span class="contact-value" id="emailValue">contactim4theone@gmail.com</span>
+            </div>
 
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
+            <a href="https://t.me/yourusername" target="_blank" rel="noopener noreferrer" class="contact-row">
+                <span class="contact-label" id="lbl-direct">Direct Line</span>
+                <span class="contact-value">Telegram DM</span>
+            </a>
+        </section>
+    </main>
 
-    const toggleBtn = document.getElementById('menu-toggle');
-    const navLinksContainer = document.getElementById('nav-links');
-    toggleBtn.addEventListener('click', () => navLinksContainer.classList.toggle('open'));
+    <div id="copyToast" class="toast-card">Copied to Clipboard</div>
 
-    const observerOptions = { threshold: 0.02, rootMargin: '0px 0px -20px 0px' };
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, observerOptions);
-    document.querySelectorAll('.contact-meta, .form-wrapper').forEach(el => observer.observe(el));
-
-    const emailForm = document.getElementById('email-form');
-    const emailStatus = document.getElementById('email-status');
-    const submitBtn = document.getElementById('submit-btn');
-
-    emailForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        submitBtn.disabled = true;
-        emailStatus.className = 'status-message';
-        emailStatus.textContent = 'Transmitting data packet...';
-        
-        const formData = new FormData(emailForm);
-        const object = Object.fromEntries(formData);
-        const json = JSON.stringify(object);
-
-        fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: json
-        })
-        .then(async (response) => {
-            let res = await response.json();
-            if (response.status == 200) {
-                emailStatus.className = 'status-message success';
-                emailStatus.textContent = 'Protocol execution complete. Message logged.';
-                emailForm.reset();
-            } else {
-                emailStatus.className = 'status-message error';
-                emailStatus.textContent = res.message;
+    <script>
+        const translations = {
+            en: {
+                lnkCapabilities: "Capabilities",
+                lnkChangelog: "Changelog",
+                lnkContact: "Contact",
+                hdrTitle: "Communications",
+                hdrDesc: "Connect for systems architecture planning, full-stack utility development, or infrastructure auditing.",
+                lblSource: "Source Control",
+                lblEmail: "Email Interface",
+                lblDirect: "Direct Line",
+                toastTxt: "Copied to Clipboard"
+            },
+            bg: {
+                lnkCapabilities: "Възможности",
+                lnkChangelog: "Хронология",
+                lnkContact: "Контакт",
+                hdrTitle: "Комуникация",
+                hdrDesc: "Свържете се за планиране на системна архитектура, разработка на софтуерни инструменти или одит на инфраструктура.",
+                lblSource: "Изходен Код",
+                lblEmail: "Електронна Поща",
+                lblDirect: "Директна Връзка",
+                toastTxt: "Копирано в буфера"
+            },
+            ru: {
+                lnkCapabilities: "Возможности",
+                lnkChangelog: "Хронология",
+                lnkContact: "Контакты",
+                hdrTitle: "Связь",
+                hdrDesc: "Свяжитесь для проектирования системной архитектуры, разработки утилит или аудита инфраструктуры.",
+                lblSource: "Исходный Код",
+                lblEmail: "Электронная Почта",
+                lblDirect: "Прямая Связь",
+                toastTxt: "Скопировано в буфер"
             }
-        })
-        .catch(error => {
-            emailStatus.className = 'status-message error';
-            emailStatus.textContent = 'Pipeline Exception: Connection refused.';
-        })
-        .finally(() => {
-            submitBtn.disabled = false;
+        };
+
+        const COOKIE_LANG_NAME = "portfolio_lang";
+        let toastTimeout = null;
+        let activeToastText = "Copied to Clipboard";
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+            return null;
+        }
+
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "")  + expires + "; path=/; SameSite=Strict";
+        }
+
+        function initSystemTheme() {
+            const themeMediaQuery = window.matchMedia('(prefers-color-scheme: light)');
+            const applyTheme = (isLight) => {
+                if (isLight) {
+                    document.body.classList.add('light-theme');
+                } else {
+                    document.body.classList.remove('light-theme');
+                }
+            };
+            applyTheme(themeMediaQuery.matches);
+            themeMediaQuery.addEventListener('change', (e) => {
+                applyTheme(e.matches);
+            });
+        }
+
+        function toggleLangMenu(event) {
+            event.stopPropagation();
+            document.getElementById('langDropdown').classList.toggle('open');
+        }
+
+        function applyLanguageStrings(lang) {
+            const dictionary = translations[lang] || translations.en;
+            
+            document.getElementById('lnk-capabilities').innerText = dictionary.lnkCapabilities;
+            document.getElementById('lnk-changelog').innerText = dictionary.lnkChangelog;
+            document.getElementById('lnk-contact').innerText = dictionary.lnkContact;
+            document.getElementById('hdr-title').innerText = dictionary.hdrTitle;
+            document.getElementById('hdr-desc').innerText = dictionary.hdrDesc;
+            document.getElementById('lbl-source').innerText = dictionary.lblSource;
+            document.getElementById('lbl-email').innerText = dictionary.lblEmail;
+            document.getElementById('lbl-direct').innerText = dictionary.lblDirect;
+            
+            activeToastText = dictionary.toastTxt;
+
+            document.querySelectorAll('.lang-option-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-lang-${lang}`).classList.add('active');
+            document.getElementById('activeLangLabel').innerText = lang.toUpperCase();
+            
+            document.documentElement.lang = lang;
+        }
+
+        function switchLanguage(lang) {
+            setCookie(COOKIE_LANG_NAME, lang, 365);
+            applyLanguageStrings(lang);
+            document.getElementById('langDropdown').classList.remove('open');
+        }
+
+        function copyEmailAddress(element) {
+            const emailText = document.getElementById('emailValue').innerText;
+            navigator.clipboard.writeText(emailText).then(() => {
+                const toast = document.getElementById('copyToast');
+                toast.innerText = activeToastText;
+                
+                if (toastTimeout) {
+                    clearTimeout(toastTimeout);
+                    toast.classList.remove('active');
+                }
+                
+                setTimeout(() => { toast.classList.add('active'); }, 50);
+                toastTimeout = setTimeout(() => { toast.classList.remove('active'); }, 2500);
+            }).catch(err => { console.error('Clipboard fault: ', err); });
+        }
+
+        document.addEventListener('click', function() {
+            document.getElementById('langDropdown').classList.remove('open');
         });
-    });
-</script>
+
+        window.onload = function() {
+            initSystemTheme();
+            const userLang = getCookie(COOKIE_LANG_NAME) || 'en';
+            applyLanguageStrings(userLang);
+        };
+    </script>
 </body>
 </html>

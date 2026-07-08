@@ -1,657 +1,496 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kaloyan Krastev | Systems Architecture</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaloyan Krastev | Systems</title>
 
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2265%%22 font-size=%2265%22 font-family=%22%27Inter%27, system-ui, sans-serif%22 font-weight=%22700%22 letter-spacing=%22-5%22 fill=%22%2394a3b8%22 text-anchor=%22middle%22>KK</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2265%%22 font-size=%2265%22 font-family=%22monospace%22 font-weight=%22700%22 letter-spacing=%22-5%22 fill=%22%23ff5502%22 text-anchor=%22middle%22>KK</text></svg>">
 
-<meta name="description" content="Portfolio of Kaloyan Krastev, Software Engineer specializing in high-performance automation, game systems, and distributed backend architectures.">
-<meta name="keywords" content="Kaloyan Krastev, Software Engineer, Backend Developer, Systems Architecture, Luau, Python, Java, Automation, SQL">
-<meta name="author" content="Kaloyan Krastev">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
-<meta property="og:site_name" content="Kaloyan Krastev Portfolio">
-<meta property="og:title" content="Kaloyan Krastev | Software Engineer">
-<meta property="og:description" content="Systems Architecture & Backend Infrastructure. Focused on high-performance automation and game engines.">
-<meta property="og:type" content="website">
-<meta property="og:theme-color" content="#070708">
+    <style>
+        /* Pure Nothing OS Monochromatic & Industrial Orange Variables */
+        :root {
+            --bg-main: #000000;          
+            --text-primary: #ffffff;     
+            --text-secondary: #666666;   
+            --border-industrial: #222222;
+            --accent-red: #ff0000;       
+            --accent-orange: #ff5502;    
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-dot: 'Share Tech Mono', monospace;
+            
+            /* Nothing OS Signature Spring/Tactile Cubic Bezier Curve */
+            --transition-tactile: 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+            --transition-spring: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Kaloyan Krastev",
-  "jobTitle": "Software Engineer",
-  "knowsAbout": ["Systems Architecture", "Backend Infrastructure", "Automation", "Python", "Java", "Luau", "SQL"],
-  "sameAs": [
-    "https://github.com/KaloyanSys32"
-  ]
-}
-</script>
+        /* Light Theme Token Overrides */
+        body.light-theme {
+            --bg-main: #ffffff;          
+            --text-primary: #000000;     
+            --text-secondary: #777777;   
+            --border-industrial: #e5e5e5;
+            --accent-orange: #d14300;    
+        }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-<style>
-:root {
-    --bg-base: #070708;
-    --surface-panel: #0c0c0e;
-    --border-subtle: #1a1a24;
-    --border-active: #2a2a35;
-    --text-heading: #e4e4e7;
-    --text-body: #94a3b8;
-    --text-muted: #475569;
-    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-}
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            -webkit-font-smoothing: antialiased;
+            letter-spacing: -0.01em;
+            transition: background-color var(--transition-tactile), color var(--transition-tactile);
+            overflow-x: hidden;
+        }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        /* Nothing Style Boot Layer */
+        #bootOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000000; 
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+        }
 
-body {
-    background-color: var(--bg-base);
-    color: var(--text-body);
-    font-family: var(--font-sans);
-    font-size: 16px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-}
+        .boot-terminal {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #ffffff;
+            text-align: center;
+            user-select: none;
+        }
 
-::selection {
-    background: rgba(148, 163, 184, 0.1);
-    color: var(--text-heading);
-}
+        .boot-row {
+            opacity: 0;
+            transform: translateY(5px);
+            transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-.subtle-grid {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 700px;
-    background-image: linear-gradient(var(--border-subtle) 1px, transparent 1px), linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
-    background-size: 56px 56px;
-    z-index: 0;
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0));
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0));
-    opacity: 0.2;
-}
+        .boot-row.visible { 
+            opacity: 1; 
+            transform: translateY(0);
+        }
 
-nav {
-    position: fixed;
-    top: 0; left: 0; width: 100%;
-    z-index: 1000;
-    background: rgba(7, 7, 8, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border-subtle);
-}
+        /* Hardware Flashing Glyph Node - Runs 3 perfect pulses */
+        .boot-glyph {
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-orange);
+            border-radius: 50%;
+            opacity: 0;
+        }
 
-.nav-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    height: 64px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        body.boot-initializing .boot-glyph {
+            animation: hardwarePulse 0.3s cubic-bezier(0.25, 1, 0.5, 1) alternate 6 forwards;
+        }
 
-.nav-logo {
-    color: var(--text-heading);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: -0.01em;
-}
+        @keyframes hardwarePulse {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1.1); box-shadow: 0 0 8px var(--accent-orange); }
+        }
 
-.nav-links {
-    display: flex;
-    gap: 2rem;
-}
+        body.light-theme .lang-menu {
+            background: #fafafa;
+        }
 
-nav a.nav-link {
-    color: var(--text-body);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
+        body.light-theme .lang-option-btn:hover {
+            background: #f0f0f2;
+        }
 
-nav a.nav-link:hover, nav a.nav-link.active {
-    color: var(--text-heading);
-}
+        body.light-theme .lang-option-btn.active {
+            background: rgba(209, 67, 0, 0.08);
+        }
 
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--text-heading);
-    cursor: pointer;
-}
+        /* Pinned Top Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-industrial);
+            z-index: 1000;
+            transition: background-color var(--transition-tactile), border-color var(--transition-tactile), transform 0.4s ease;
+            
+            /* Slide down navigation panel entry */
+            animation: navSlideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transform: translateY(-100%);
+        }
 
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    position: relative;
-    z-index: 1;
-}
+        @keyframes navSlideDown {
+            to { transform: translateY(0); }
+        }
 
-.hero-section {
-    padding-top: 200px;
-    padding-bottom: 120px;
-    text-align: left;
-}
+        body.light-theme .navbar {
+            background: rgba(255, 255, 255, 0.85);
+        }
 
-.hero-section h1 {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.15;
-    color: var(--text-heading);
-    max-width: 850px;
-    margin-bottom: 2rem;
-}
+        .nav-logo {
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-.hero-section p {
-    font-size: 19px;
-    color: var(--text-body);
-    max-width: 700px;
-    margin-bottom: 3rem;
-}
+        .nav-logo::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            background: var(--accent-red);
+            border-radius: 50%;
+        }
 
-.cta-group {
-    display: flex;
-    justify-content: flex-start;
-    gap: 1rem;
-}
+        .nav-right-container {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
 
-.btn {
-    padding: 12px 24px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 500;
-    transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    display: inline-flex;
-    align-items: center;
-}
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
 
-.btn-primary {
-    background: var(--text-heading);
-    color: var(--bg-base);
-}
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            transition: color var(--transition-tactile);
+            position: relative;
+        }
 
-.btn-primary:hover {
-    background: #ffffff;
-    transform: translateY(-2px);
-}
+        .nav-links a:hover {
+            color: var(--accent-orange);
+        }
 
-.btn-secondary {
-    background: transparent;
-    color: var(--text-heading);
-    border: 1px solid var(--border-subtle);
-}
+        /* Language Dropdown */
+        .lang-dropdown-wrapper {
+            position: relative;
+            border-left: 1px solid var(--border-industrial);
+            padding-left: 1.5rem;
+            transition: border-color var(--transition-tactile);
+        }
 
-.btn-secondary:hover {
-    border-color: var(--border-active);
-    transform: translateY(-2px);
-}
+        .lang-trigger-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: color var(--transition-tactile);
+        }
 
-.section-block {
-    padding: 100px 0;
-    border-top: 1px solid var(--border-subtle);
-}
+        .lang-trigger-btn:hover {
+            color: var(--text-primary);
+        }
 
-.section-header {
-    margin-bottom: 4rem;
-}
+        .lang-menu {
+            position: absolute;
+            top: calc(100% + 1rem);
+            right: 0;
+            background: #0a0a0a;
+            border: 1px solid var(--border-industrial);
+            border-radius: 8px;
+            padding: 0.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            min-width: 80px;
+            opacity: 0;
+            transform: translateY(-8px) scale(0.95);
+            pointer-events: none;
+            transition: opacity var(--transition-tactile), transform var(--transition-tactile);
+        }
 
-.section-label {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    letter-spacing: 0.05em;
-    margin-bottom: 0.75rem;
-}
+        .lang-dropdown-wrapper.open .lang-menu {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
 
-.section-title {
-    font-size: 24px;
-    font-weight: 600;
-    color: var(--text-heading);
-    letter-spacing: -0.01em;
-}
+        .lang-option-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-align: left;
+            padding: 0.4rem 0.6rem;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background var(--transition-tactile), color var(--transition-tactile);
+        }
 
-.component-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
-}
+        .lang-option-btn:hover {
+            background: #141414;
+            color: var(--text-primary);
+        }
 
-.feature-layout-2 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-}
+        .lang-option-btn.active {
+            color: var(--accent-orange);
+            background: rgba(255, 85, 2, 0.08);
+            pointer-events: none;
+        }
 
-.spec-card {
-    background: #09090b;
-    border: 1px solid #1a1a24;
-    border-radius: 6px;
-    padding: 2rem;
-    transition: border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
+        /* Main Container Layout with Stagger Animation triggers */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 10rem 2rem 4rem 2rem;
+        }
 
-.spec-card:hover {
-    border-color: #252533;
-    transform: translateY(-4px);
-}
+        /* Spring-loaded layout reveal blocks */
+        .animate-fade-up {
+            opacity: 0;
+            transform: translateY(15px);
+        }
 
-.spec-card h3 {
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--text-heading);
-    margin-bottom: 0.5rem;
-}
+        body.boot-complete .animate-fade-up {
+            animation: hardwareReveal var(--transition-spring) forwards;
+        }
 
-.spec-card p {
-    font-size: 14.5px;
-    color: var(--text-body);
-}
+        body.boot-complete .hero h1 { animation-delay: 0.05s; }
+        body.boot-complete .hero p { animation-delay: 0.12s; }
 
-.product-card {
-    background: #0e0e11;
-    border: 1px solid #22222e;
-    border-radius: 8px;
-    padding: 2.5rem;
-    box-shadow: 0 4px 24px -8px rgba(0, 0, 0, 0.7);
-    transition: border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
+        @keyframes hardwareReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-.product-card:hover {
-    border-color: #35354a;
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.9);
-}
+        /* Clean Solid Typography */
+        .hero h1 {
+            font-family: var(--font-dot);
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: 0.02em;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            color: var(--accent-orange);
+        }
 
-.product-card h3 {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--text-heading);
-    margin-bottom: 0.75rem;
-}
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.7;
+            max-width: 750px;
+            transition: color var(--transition-tactile);
+        }
 
-.product-card p {
-    font-size: 15px;
-    color: var(--text-body);
-}
-
-.card-tags {
-    display: flex;
-    gap: 6px;
-    margin-top: 1.5rem;
-}
-
-.mini-tag {
-    font-family: var(--font-sans);
-    font-size: 13px;
-    font-weight: 500;
-    background: #181822;
-    border: 1px solid #2d2d3f;
-    padding: 4px 10px;
-    border-radius: 4px;
-    color: #cbd5e1;
-    letter-spacing: -0.01em;
-    transition: border-color 0.2s ease, background-color 0.2s ease;
-}
-
-.product-card:hover .mini-tag {
-    border-color: #3d3d54;
-    background: #1d1d29;
-}
-
-.tier-card {
-    display: flex;
-    flex-direction: column;
-}
-
-.tier-card.highlight {
-    border-color: #2e2e3d;
-    background: linear-gradient(180deg, #121217 0%, #0e0e11 100%);
-    box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.8);
-}
-
-.tier-card.highlight:hover {
-    border-color: #3d3d52;
-}
-
-.tier-price {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--text-heading);
-    letter-spacing: -0.02em;
-    margin: 1.5rem 0;
-}
-
-.tier-card ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 2.5rem;
-}
-
-.tier-card li {
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--text-body);
-}
-
-.tier-card li::before {
-    content: '—';
-    color: var(--text-muted);
-}
-
-.tier-card .btn {
-    margin-top: auto;
-    width: 100%;
-    justify-content: center;
-    padding: 12px;
-}
-
-footer {
-    border-top: 1px solid var(--border-subtle);
-    padding: 3rem 0;
-    background: var(--bg-base);
-}
-
-.footer-wrapper {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 14px;
-}
-
-.btn-github {
-    background: #0f0f13;
-    border: 1px solid #22222e;
-    color: var(--text-heading);
-    padding: 10px 18px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.btn-github:hover {
-    background: #14141a;
-    border-color: #35354a;
-    transform: translateY(-2px);
-}
-
-.btn-github svg {
-    fill: currentColor;
-}
-
-.hero-section, .section-block {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.47s cubic-bezier(0.215, 0.610, 0.355, 1.000), transform 0.47s cubic-bezier(0.215, 0.610, 0.355, 1.000);
-    will-change: transform, opacity;
-}
-
-.hero-section.visible, .section-block.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-@media (max-width: 900px) {
-    .component-grid { grid-template-columns: 1fr; gap: 2rem; }
-}
-
-@media (max-width: 768px) {
-    .menu-toggle { display: block; }
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        position: fixed;
-        top: 64px; left: 0; width: 100%; height: calc(100vh - 64px);
-        background: var(--bg-base);
-        padding: 2rem;
-        gap: 1.5rem;
-        border-top: 1px solid var(--border-subtle);
-    }
-    .nav-links.open { display: flex; }
-    .feature-layout-2 { grid-template-columns: 1fr; }
-    .hero-section { padding-top: 160px; }
-    .footer-wrapper { flex-direction: column; gap: 1.5rem; text-align: center; }
-}
-</style>
-<script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+        @media (max-width: 768px) {
+            .nav-right-container { gap: 1.5rem; }
+            .lang-dropdown-wrapper { padding-left: 0.75rem; }
+            .nav-links { gap: 1.25rem; }
+        }
+    </style>
 </head>
 <body>
 
-<div class="subtle-grid"></div>
-
-<nav>
-    <div class="nav-container">
-        <a href="#home" class="nav-logo">KALOYAN KRASTEV</a>
-        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="3" y1="12" x2="21" y2="12"></line>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <line x1="3" y1="18" x2="21" y2="18"></line>
-            </svg>
-        </button>
-        <div class="nav-links" id="nav-links">
-            <a href="#features" class="nav-link">Capabilities</a>
-            <a href="#production" class="nav-link">Production</a>
-            <a href="#pricing" class="nav-link">Deployments</a>
-            <a href="contacts.html" class="nav-link">Contact</a>
+    <div id="bootOverlay">
+        <div class="boot-glyph"></div>
+        <div class="boot-terminal">
+            <div class="boot-row" id="bootRowWelcome"><span>WELCOME</span></div>
         </div>
     </div>
-</nav>
 
-<main class="container">
-    <section class="hero-section" id="home">
-        <h1>High-performance automation logic and backend infrastructure.</h1>
-        <p>Engineered by Kaloyan Krastev. Scalable system architectures, clean database migration pipelines, and performance-tuned software scripts built for processing speed.</p>
-        <div class="cta-group">
-            <a href="contacts.html" class="btn btn-primary">Get in Touch</a>
-            <a href="#features" class="btn btn-secondary">Explore Capabilities</a>
-        </div>
-    </section>
-
-    <section class="section-block" id="features">
-        <div class="section-header">
-            <h2 class="section-title">Core Capabilities</h2>
-        </div>
-        <div class="component-grid">
-            <div class="spec-card">
-                <h3>Backend Engineering</h3>
-                <p>Distributed computing logic layers and decoupled event handling infrastructure written in Python, Java, and Luau.</p>
+    <nav class="navbar">
+        <a href="#home" class="nav-logo">Kaloyan Krastev</a>
+        <div class="nav-right-container">
+            <div class="nav-links">
+                <a href="#home" id="lnk-capabilities">Capabilities</a>
+                <a href="https://github.com/kaloyansys32/kaloyansys32.github.io/releases" target="_blank" id="lnk-changelog">Changelog</a>
+                <a href="contacts.html" id="lnk-contact">Contact</a>
             </div>
-            <div class="spec-card">
-                <h3>Data Architecture</h3>
-                <p>High-concurrency relational schema modeling, database transactional safety, and embedded SQLite optimizations.</p>
-            </div>
-            <div class="spec-card">
-                <h3>System Automation</h3>
-                <p>Cross-platform system utilities and command-line automation engines tailored for resource optimization.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-block" id="production">
-        <div class="section-header">
-            <h2 class="section-title">Production Projects</h2>
-        </div>
-        <div class="feature-layout-2">
-            <div class="product-card">
-                <h3>Asynchronous Task Engine</h3>
-                <p>A high-throughput concurrent runner designed for distributing OS tasks efficiently alongside pooled database interactions.</p>
-                <div class="card-tags">
-                    <span class="mini-tag">Python</span>
-                    <span class="mini-tag">SQLite</span>
-                    <span class="mini-tag">Asyncio</span>
-                </div>
-            </div>
-            <div class="product-card">
-                <h3>Decoupled Server Architecture</h3>
-                <p>A modular server logic layer structured to reduce data packet overhead footprints securely inside game engine environments.</p>
-                <div class="card-tags">
-                    <span class="mini-tag">Luau</span>
-                    <span class="mini-tag">Framework</span>
+            
+            <div class="lang-dropdown-wrapper" id="langDropdown">
+                <button class="lang-trigger-btn" onclick="toggleLangMenu(event)" id="activeLangLabel">EN</button>
+                <div class="lang-menu">
+                    <button class="lang-option-btn" onclick="switchLanguage('en')" id="btn-lang-en">EN</button>
+                    <button class="lang-option-btn" onclick="switchLanguage('bg')" id="btn-lang-bg">BG</button>
+                    <button class="lang-option-btn" onclick="switchLanguage('ru')" id="btn-lang-ru">RU</button>
                 </div>
             </div>
         </div>
-    </section>
+    </nav>
 
-    <section class="section-block" id="pricing">
-        <div class="section-header">
-            <h2 class="section-title">Engagement Models</h2>
-        </div>
-        <div class="component-grid">
-            <div class="product-card tier-card">
-                <h3>Scripting & Optimization</h3>
-                <p>Environment analysis, targeted performance tuning, and specific execution modules.</p>
-                <div class="tier-price">Hourly</div>
-                <ul>
-                    <li>OS Shell Automation</li>
-                    <li>PowerShell & Bash Utilities</li>
-                    <li>Isolated System Refactors</li>
-                </ul>
-                <a href="contacts.html" class="btn btn-secondary">Request Consultation</a>
-            </div>
-            <div class="product-card tier-card highlight">
-                <h3>Core Architecture</h3>
-                <p>End-to-end backend service engineering, API layout development, and database infrastructure scaling.</p>
-                <div class="tier-price">Project</div>
-                <ul>
-                    <li>Java & Python REST APIs</li>
-                    <li>Relational Database Layouts</li>
-                    <li>Distributed Workflow Logic</li>
-                </ul>
-                <a href="contacts.html" class="btn btn-primary">Initialize Project</a>
-            </div>
-            <div class="product-card tier-card">
-                <h3>Operational Terms</h3>
-                <p>Static delivery boundaries, direct console reporting, and code transition mechanics.</p>
-                <div class="tier-price">Protocol</div>
-                <ul>
-                    <li>Strict Git-Based Deliveries</li>
-                    <li>Defined Project Parameters</li>
-                    <li>Direct Execution Logs</li>
-                </ul>
-                <a href="contacts.html" class="btn btn-secondary">Review Guidelines</a>
-            </div>
-        </div>
-    </section>
-</main>
+    <main class="container" id="home">
+        <section class="hero">
+            <h1 id="hero-title" class="animate-fade-up">High-performance automation logic and backend infrastructure.</h1>
+            <p id="hero-desc" class="animate-fade-up">Engineered by Kaloyan Krastev. Scalable system architectures, clean database migration pipelines, and performance-tuned software scripts built for processing speed.</p>
+        </section>
+    </main>
 
-<footer>
-    <div class="footer-wrapper">
-        <p>© 2026 Kaloyan Krastev. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="https://github.com/KaloyanSys32" target="_blank" class="btn-github">
-                <svg width="16" height="16" viewBox="0 0 24 24">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                </svg>
-                GitHub
-            </a>
-        </div>
-    </div>
-</footer>
-
-<script>
-    const lenis = new Lenis({
-        duration: 1.17,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        direction: 'vertical',
-        gestureDirection: 'vertical',
-        smooth: true,
-        mouseMultiplier: 0.8,
-        smoothTouch: false,
-        touchMultiplier: 1.5,
-        infinite: false,
-    });
-
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    const toggleBtn = document.getElementById('menu-toggle');
-    const navLinksContainer = document.getElementById('nav-links');
-    
-    toggleBtn.addEventListener('click', () => {
-        navLinksContainer.classList.toggle('open');
-    });
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            navLinksContainer.classList.remove('open');
-            const targetID = this.getAttribute('href');
-            lenis.scrollTo(targetID, { offset: -70 });
-        });
-    });
-
-    const observerOptions = {
-        threshold: 0.02,
-        rootMargin: '0px 0px -20px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+    <script>
+        const translations = {
+            en: {
+                lnkCapabilities: "Capabilities",
+                lnkChangelog: "Changelog",
+                lnkContact: "Contact",
+                heroTitle: "High-performance automation logic and backend infrastructure.",
+                heroDesc: "Engineered by Kaloyan Krastev. Scalable system architectures, clean database migration pipelines, and performance-tuned software scripts built for processing speed."
+            },
+            bg: {
+                lnkCapabilities: "Възможности",
+                lnkChangelog: "Хронология",
+                lnkContact: "Контакт",
+                heroTitle: "Високопроизводителна логика за автоматизация и бекенд инфраструктура.",
+                heroDesc: "Разработено от Калоян Кръстев. Мащабируеми системни архитектури, чисти конвейери за миграция на бази данни и софтуерни скриптове, оптимизирани за максимална скорост на обработка."
+            },
+            ru: {
+                lnkCapabilities: "Возможности",
+                lnkChangelog: "Хронология",
+                lnkContact: "Контакты",
+                heroTitle: "Высокопроизводительная логика автоматизации и бэкенд-инфраструктура.",
+                heroDesc: "Выполнено Калояном Крастевым. Масштабируемые системные архитектуры, чистые конвейеры миграции баз данных и программные скрипты, оптимизированные для максимальной скорости обработки."
             }
-        });
-    }, observerOptions);
+        };
 
-    document.querySelectorAll('.section-block, .hero-section').forEach(el => {
-        observer.observe(el);
-    });
+        const COOKIE_LANG_NAME = "portfolio_lang";
 
-    const targetSections = document.querySelectorAll('#home, #features, #production, #pricing');
-    const navLinks = document.querySelectorAll('.nav-link');
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+            return null;
+        }
 
-    lenis.on('scroll', () => {
-        let current = '';
-        const scrollPosition = window.scrollY || document.documentElement.scrollTop;
-
-        targetSections.forEach(section => {
-            const rect = section.getBoundingClientRect();
-            const absoluteTop = rect.top + scrollPosition;
-            const sectionTop = absoluteTop - 150;
-            const sectionHeight = section.clientHeight;
-
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                current = section.getAttribute('id');
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
             }
+            document.cookie = name + "=" + (value || "")  + expires + "; path=/; SameSite=Strict";
+        }
+
+        // Auto-match user light/dark system settings
+        function initSystemTheme() {
+            const themeMediaQuery = window.matchMedia('(prefers-color-scheme: light)');
+            const applyTheme = (isLight) => {
+                if (isLight) {
+                    document.body.classList.add('light-theme');
+                } else {
+                    document.body.classList.remove('light-theme');
+                }
+            };
+            applyTheme(themeMediaQuery.matches);
+            themeMediaQuery.addEventListener('change', (e) => {
+                applyTheme(e.matches);
+            });
+        }
+
+        // Hardware Boot Engine with Event Listener
+        function executeHardwareBoot() {
+            const overlay = document.getElementById('bootOverlay');
+            const glyph = document.querySelector('.boot-glyph');
+            
+            if (sessionStorage.getItem('portfolio_booted')) {
+                if (overlay) overlay.remove();
+                document.body.classList.add('boot-complete');
+                return;
+            }
+
+            document.body.classList.add('boot-initializing');
+
+            setTimeout(() => {
+                const welcomeRow = document.getElementById('bootRowWelcome');
+                if (welcomeRow) welcomeRow.classList.add('visible');
+            }, 150);
+
+            if (glyph) {
+                glyph.addEventListener('animationend', () => {
+                    setTimeout(() => {
+                        if (overlay) overlay.style.transform = 'translateY(-100%)';
+                        document.body.classList.add('boot-complete');
+                        sessionStorage.setItem('portfolio_booted', 'true');
+                    }, 100);
+
+                    setTimeout(() => {
+                        if (overlay) overlay.remove();
+                    }, 500);
+                });
+            }
+        }
+
+        function toggleLangMenu(event) {
+            event.stopPropagation();
+            document.getElementById('langDropdown').classList.toggle('open');
+        }
+
+        function applyLanguageStrings(lang) {
+            const dictionary = translations[lang] || translations.en;
+            
+            document.getElementById('lnk-capabilities').innerText = dictionary.lnkCapabilities;
+            document.getElementById('lnk-changelog').innerText = dictionary.lnkChangelog;
+            document.getElementById('lnk-contact').innerText = dictionary.lnkContact;
+            document.getElementById('hero-title').innerText = dictionary.heroTitle;
+            document.getElementById('hero-desc').innerText = dictionary.heroDesc;
+
+            document.querySelectorAll('.lang-option-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-lang-${lang}`).classList.add('active');
+            document.getElementById('activeLangLabel').innerText = lang.toUpperCase();
+            
+            document.documentElement.lang = lang;
+        }
+
+        function switchLanguage(lang) {
+            setCookie(COOKIE_LANG_NAME, lang, 365);
+            applyLanguageStrings(lang);
+            document.getElementById('langDropdown').classList.remove('open');
+        }
+
+        document.addEventListener('click', function() {
+            document.getElementById('langDropdown').classList.remove('open');
         });
 
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
-            }
-        });
-    });
-</script>
+        window.onload = function() {
+            const userLang = getCookie(COOKIE_LANG_NAME) || 'en';
+            initSystemTheme();
+            executeHardwareBoot();
+            applyLanguageStrings(userLang);
+        };
+    </script>
 </body>
 </html>
