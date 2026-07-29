@@ -237,7 +237,33 @@
   loadGithubActivity();
 
   /* ------------------------------------------------------------------
-     7. Copy email to clipboard + toast
+     7. Project card metadata — star count per repo, fetched independently
+        per card so one failing request doesn't affect the others.
+     ------------------------------------------------------------------ */
+
+  function loadProjectMeta() {
+    var metaEls = Array.prototype.slice.call(document.querySelectorAll('.project-meta[data-repo]'));
+
+    metaEls.forEach(function (el) {
+      var repo = el.getAttribute('data-repo');
+      fetchJson('https://api.github.com/repos/' + GITHUB_USERNAME + '/' + repo)
+        .then(function (data) {
+          var stars = data.stargazers_count || 0;
+          el.textContent = '★ ' + stars;
+          el.classList.remove('is-loading');
+        })
+        .catch(function (err) {
+          console.error('[project-meta] ' + repo, err.message);
+          // Fail quietly — the card still reads fine without a live star count.
+          el.remove();
+        });
+    });
+  }
+
+  loadProjectMeta();
+
+  /* ------------------------------------------------------------------
+     8. Copy email to clipboard + toast
      ------------------------------------------------------------------ */
 
   var copyEmailRow = document.getElementById('copyEmailRow');
@@ -273,7 +299,7 @@
   }
 
   /* ------------------------------------------------------------------
-     8. Footer year
+     9. Footer year
      ------------------------------------------------------------------ */
 
   var yearEl = document.getElementById('year');
