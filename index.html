@@ -30,6 +30,7 @@
 
       <nav class="nav-links" aria-label="Primary">
         <a href="#about">About</a>
+        <a href="#projects">Projects</a>
         <a href="#stack">Tech Stack</a>
         <a href="#experience">Experience</a>
         <a href="#contact">Contact</a>
@@ -55,6 +56,7 @@
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
     </button>
     <a href="#about">About</a>
+    <a href="#projects">Projects</a>
     <a href="#stack">Tech Stack</a>
     <a href="#experience">Experience</a>
     <a href="#contact">Contact</a>
@@ -166,9 +168,61 @@
       </div>
     </section>
 
-    <!-- ============ Projects (add here later — reuse .section-head + a
-         card/grid component; the layout and spacing system already
-         support it without restructuring the page) ============ -->
+    <!-- ============ Projects ============ -->
+    <section id="projects" aria-label="Projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-kicker">Projects</span>
+          <h2>Open-source work</h2>
+          <p>A couple of Minecraft plugins I maintain in the open — built the same way as everything else here.</p>
+        </div>
+
+        <div class="project-grid">
+
+          <article class="project-card reveal">
+            <div class="project-card-top">
+              <span class="project-category">Minecraft Plugin</span>
+              <span class="project-meta is-loading" data-repo="FastLeafDecay">Loading…</span>
+            </div>
+            <h3>FastLeafDecay</h3>
+            <p>A lightweight Paper/Purpur plugin that speeds up natural leaf decay after trees are chopped down — designed to feel like vanilla while cutting cleanup time and keeping performance high.</p>
+            <div class="project-tags">
+              <span class="project-tag">Java</span>
+              <span class="project-tag">Paper API</span>
+              <span class="project-tag">Maven</span>
+            </div>
+            <div class="project-card-foot">
+              <a class="btn btn-secondary btn-sm" href="https://github.com/KaloyanSyS32/FastLeafDecay" target="_blank" rel="noopener noreferrer">
+                View Repository
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-card-top">
+              <span class="project-category">Minecraft Plugin</span>
+              <span class="project-meta is-loading" data-repo="HeadHunter">Loading…</span>
+            </div>
+            <h3>HeadHunter</h3>
+            <p>A Paper/Purpur plugin that drops collectible player heads after PvP kills. Heads preserve the victim, killer, weapon, and kill date — trophies built for survival and SMP servers.</p>
+            <div class="project-tags">
+              <span class="project-tag">Java</span>
+              <span class="project-tag">Paper API</span>
+              <span class="project-tag">Adventure API</span>
+              <span class="project-tag">Maven</span>
+            </div>
+            <div class="project-card-foot">
+              <a class="btn btn-secondary btn-sm" href="https://github.com/KaloyanSyS32/HeadHunter" target="_blank" rel="noopener noreferrer">
+                View Repository
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
 
     <!-- ============ Tech Stack ============ -->
     <section id="stack" aria-label="Tech stack">
@@ -336,6 +390,7 @@
           <h4>Site</h4>
           <ul>
             <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
             <li><a href="#stack">Tech Stack</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#contact">Contact</a></li>
