@@ -675,7 +675,93 @@ main section:last-of-type {
   font-size: 0.94rem;
 }
 
-/* ---------- 11. Tech stack — "spec sheet" ---------- */
+/* ---------- 11. Projects — card grid ---------- */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-3);
+  transition: transform var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--line-strong);
+}
+
+.project-card-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.project-category {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.project-meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+
+.project-card h3 {
+  margin-top: 0.1rem;
+}
+
+.project-card p {
+  font-size: 0.95rem;
+  max-width: none;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-top: var(--space-1);
+}
+
+.project-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 0.28rem 0.65rem;
+}
+
+.project-card-foot {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.btn-sm {
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+}
+
+/* ---------- 12. Tech stack — "spec sheet" ---------- */
 
 .stack-list {
   border-top: 1px solid var(--line);
@@ -711,7 +797,7 @@ main section:last-of-type {
   position: relative;
 }
 
-/* ---------- 12. Experience — timeline ---------- */
+/* ---------- 13. Experience — timeline ---------- */
 
 .timeline {
   display: flex;
@@ -752,7 +838,7 @@ main section:last-of-type {
   font-size: 0.95rem;
 }
 
-/* ---------- 13. Contact ---------- */
+/* ---------- 14. Contact ---------- */
 
 .contact-layout {
   display: grid;
@@ -845,7 +931,7 @@ main section:last-of-type {
   height: 16px;
 }
 
-/* ---------- 14. Footer ---------- */
+/* ---------- 15. Footer ---------- */
 
 footer {
   padding-block: var(--space-6) var(--space-4);
@@ -917,7 +1003,7 @@ footer {
   transform: translateY(-2px);
 }
 
-/* ---------- 15. Toast ---------- */
+/* ---------- 16. Toast ---------- */
 
 .toast {
   position: fixed;
@@ -941,7 +1027,7 @@ footer {
   transform: translate(-50%, 0);
 }
 
-/* ---------- 16. Responsive ---------- */
+/* ---------- 17. Responsive ---------- */
 
 @media (max-width: 900px) {
   .nav-links {
@@ -961,6 +1047,10 @@ footer {
   .contact-layout {
     grid-template-columns: 1fr;
     gap: var(--space-5);
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
   }
 
   .footer-top {
