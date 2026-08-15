@@ -1,9 +1,8 @@
 /* ==========================================================================
-   Kaloyan Krastev — Portfolio
+   Kaloyan K. — Personal site
    Vanilla JS only. No frameworks, no build step.
-   Sections: theme, scroll progress, navbar scroll state, mobile menu,
-   scroll reveal, smooth scroll, GitHub live activity line,
-   copy-to-clipboard + toast, footer year.
+   Sections: navbar scroll state, mobile menu, scroll reveal, smooth scroll,
+   GitHub repo stats, copy-to-clipboard, footer year.
    ========================================================================== */
 
 (function () {
@@ -12,108 +11,49 @@
   var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ------------------------------------------------------------------
-     1. Theme (dark default, light optional) — persisted via cookie so
-        it survives without relying on localStorage.
+     1. Navbar scroll state — subtle translucent/blurred background
      ------------------------------------------------------------------ */
 
-  var THEME_COOKIE = 'portfolio_theme';
-
-  function getCookie(name) {
-    var match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
-    return match ? decodeURIComponent(match[1]) : null;
-  }
-
-  function setCookie(name, value, days) {
-    var expires = '';
-    if (days) {
-      var date = new Date();
-      date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-      expires = '; expires=' + date.toUTCString();
-    }
-    document.cookie = name + '=' + encodeURIComponent(value) + expires + '; path=/; SameSite=Strict';
-  }
-
-  function applyTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-  }
-
-  function initTheme() {
-    var saved = getCookie(THEME_COOKIE);
-    if (saved === 'light' || saved === 'dark') {
-      applyTheme(saved);
-    } else {
-      var systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-      applyTheme(systemPrefersLight ? 'light' : 'dark');
-    }
-  }
-
-  function toggleTheme() {
-    var current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
-    var next = current === 'light' ? 'dark' : 'light';
-    applyTheme(next);
-    setCookie(THEME_COOKIE, next, 365);
-  }
-
-  var themeToggle = document.getElementById('themeToggle');
-  if (themeToggle) {
-    themeToggle.addEventListener('click', toggleTheme);
-  }
-
-  initTheme();
-
-  /* ------------------------------------------------------------------
-     2. Scroll progress hairline + navbar scroll state
-     ------------------------------------------------------------------ */
-
-  var navbar = document.getElementById('navbar');
-  var scrollProgress = document.getElementById('scrollProgress');
+  var nav = document.getElementById('nav');
   var lastScrollState = false;
 
   function updateOnScroll() {
     var shouldBeScrolled = window.scrollY > 12;
-    if (navbar && shouldBeScrolled !== lastScrollState) {
-      navbar.classList.toggle('is-scrolled', shouldBeScrolled);
+    if (nav && shouldBeScrolled !== lastScrollState) {
+      nav.classList.toggle('is-scrolled', shouldBeScrolled);
       lastScrollState = shouldBeScrolled;
-    }
-
-    if (scrollProgress) {
-      var scrollTop = window.scrollY;
-      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      scrollProgress.style.width = pct + '%';
     }
   }
 
   updateOnScroll();
   window.addEventListener('scroll', updateOnScroll, { passive: true });
-  window.addEventListener('resize', updateOnScroll);
 
   /* ------------------------------------------------------------------
-     3. Mobile menu
+     2. Mobile menu
      ------------------------------------------------------------------ */
 
   var navToggle = document.getElementById('navToggle');
-  var mobilePanel = document.getElementById('mobilePanel');
-  var mobilePanelClose = document.getElementById('mobilePanelClose');
-  var scrim = document.getElementById('scrim');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var mobileMenuClose = document.getElementById('mobileMenuClose');
+  var menuScrim = document.getElementById('menuScrim');
 
   function openMobileMenu() {
-    mobilePanel.classList.add('is-open');
-    scrim.classList.add('is-open');
+    mobileMenu.classList.add('is-open');
+    menuScrim.classList.add('is-open');
     navToggle.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
   }
 
   function closeMobileMenu() {
-    mobilePanel.classList.remove('is-open');
-    scrim.classList.remove('is-open');
+    mobileMenu.classList.remove('is-open');
+    menuScrim.classList.remove('is-open');
     navToggle.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   }
 
   if (navToggle) {
     navToggle.addEventListener('click', function () {
-      var isOpen = mobilePanel.classList.contains('is-open');
+      var isOpen = mobileMenu.classList.contains('is-open');
       if (isOpen) {
         closeMobileMenu();
       } else {
@@ -122,11 +62,11 @@
     });
   }
 
-  if (mobilePanelClose) mobilePanelClose.addEventListener('click', closeMobileMenu);
-  if (scrim) scrim.addEventListener('click', closeMobileMenu);
+  if (mobileMenuClose) mobileMenuClose.addEventListener('click', closeMobileMenu);
+  if (menuScrim) menuScrim.addEventListener('click', closeMobileMenu);
 
-  if (mobilePanel) {
-    Array.prototype.forEach.call(mobilePanel.querySelectorAll('a'), function (link) {
+  if (mobileMenu) {
+    Array.prototype.forEach.call(mobileMenu.querySelectorAll('a'), function (link) {
       link.addEventListener('click', closeMobileMenu);
     });
   }
@@ -136,7 +76,7 @@
   });
 
   /* ------------------------------------------------------------------
-     4. Reveal-on-scroll — IntersectionObserver, staggered within groups
+     3. Reveal-on-scroll — IntersectionObserver
      ------------------------------------------------------------------ */
 
   var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
@@ -160,7 +100,7 @@
   }
 
   /* ------------------------------------------------------------------
-     5. Smooth scroll for in-page anchors (progressive enhancement on
+     4. Smooth scroll for in-page anchors (progressive enhancement on
         top of CSS scroll-behavior, mainly here to close the mobile menu
         and manage focus for accessibility)
      ------------------------------------------------------------------ */
@@ -184,20 +124,12 @@
   });
 
   /* ------------------------------------------------------------------
-     6. GitHub live activity line (inside the Contact "source control" row)
+     5. GitHub repo stats — star count per project, fetched independently
+        per card so one failing request doesn't affect the others.
      ------------------------------------------------------------------ */
 
-  var GITHUB_USERNAME = 'kaloyansys32';
+  var GITHUB_USERNAME = 'Im4TheOne';
 
-  function setGithubSub(text) {
-    var el = document.getElementById('githubSub');
-    if (!el) return;
-    el.textContent = text;
-    el.classList.remove('is-loading');
-  }
-
-  // Fetches profile + repos independently so a rate limit on one endpoint
-  // doesn't blank out information available from the other.
   function fetchJson(url) {
     return fetch(url, {
       headers: { Accept: 'application/vnd.github+json' },
@@ -210,65 +142,36 @@
     });
   }
 
-  function loadGithubActivity() {
-    var githubSub = document.getElementById('githubSub');
-    if (!githubSub) return;
+  function loadProjectStats() {
+    var statEls = Array.prototype.slice.call(document.querySelectorAll('.project-stat[data-repo]'));
 
-    Promise.all([
-      fetchJson('https://api.github.com/users/' + GITHUB_USERNAME),
-      fetchJson('https://api.github.com/users/' + GITHUB_USERNAME + '/repos?per_page=100')
-    ])
-      .then(function (results) {
-        var user = results[0];
-        var repos = Array.isArray(results[1]) ? results[1] : [];
-        var totalStars = repos.reduce(function (sum, repo) {
-          return sum + (repo.stargazers_count || 0);
-        }, 0);
-        var repoCount = user.public_repos != null ? user.public_repos : repos.length;
-        setGithubSub(repoCount + ' public repos · ' + totalStars + ' stars');
-      })
-      .catch(function (err) {
-        console.error('[github-activity]', err.message);
-        // Fail quietly — the row still works fine as a plain link.
-        githubSub.remove();
-      });
-  }
-
-  loadGithubActivity();
-
-  /* ------------------------------------------------------------------
-     7. Project card metadata — star count per repo, fetched independently
-        per card so one failing request doesn't affect the others.
-     ------------------------------------------------------------------ */
-
-  function loadProjectMeta() {
-    var metaEls = Array.prototype.slice.call(document.querySelectorAll('.project-meta[data-repo]'));
-
-    metaEls.forEach(function (el) {
+    statEls.forEach(function (el) {
       var repo = el.getAttribute('data-repo');
       fetchJson('https://api.github.com/repos/' + GITHUB_USERNAME + '/' + repo)
         .then(function (data) {
           var stars = data.stargazers_count || 0;
-          el.textContent = '★ ' + stars;
+          var label = stars === 1 ? '1 star' : stars + ' stars';
+          el.textContent = label + ' on GitHub';
           el.classList.remove('is-loading');
         })
         .catch(function (err) {
-          console.error('[project-meta] ' + repo, err.message);
-          // Fail quietly — the card still reads fine without a live star count.
+          console.error('[project-stats] ' + repo, err.message);
+          // Fail quietly — the project still reads fine without a live star count.
           el.remove();
         });
     });
   }
 
-  loadProjectMeta();
+  loadProjectStats();
 
   /* ------------------------------------------------------------------
-     8. Copy email to clipboard + toast
+     6. Copy email to clipboard + toast
      ------------------------------------------------------------------ */
 
-  var copyEmailRow = document.getElementById('copyEmailRow');
+  var copyEmailBtn = document.getElementById('copyEmailBtn');
   var toast = document.getElementById('toast');
   var toastTimeout = null;
+  var EMAIL = 'contactim4theone@gmail.com';
 
   function showToast(message) {
     if (!toast) return;
@@ -281,25 +184,21 @@
     toastTimeout = window.setTimeout(function () { toast.classList.remove('is-active'); }, 2400);
   }
 
-  if (copyEmailRow) {
-    copyEmailRow.addEventListener('click', function () {
-      var emailValueEl = document.getElementById('emailValue');
-      var email = emailValueEl ? emailValueEl.textContent.trim() : '';
-      if (!email) return;
-
+  if (copyEmailBtn) {
+    copyEmailBtn.addEventListener('click', function () {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard
-          .writeText(email)
+          .writeText(EMAIL)
           .then(function () { showToast('Email copied to clipboard'); })
-          .catch(function () { showToast('Could not copy — email: ' + email); });
+          .catch(function () { showToast('Email: ' + EMAIL); });
       } else {
-        showToast('Email: ' + email);
+        showToast('Email: ' + EMAIL);
       }
     });
   }
 
   /* ------------------------------------------------------------------
-     9. Footer year
+     7. Footer year
      ------------------------------------------------------------------ */
 
   var yearEl = document.getElementById('year');
