@@ -432,6 +432,75 @@ main section {
   border-color: var(--text);
 }
 
+/* ---------- 9b. Featured project ---------- */
+
+.project--featured {
+  padding-top: var(--space-6);
+}
+
+.project-tagline {
+  font-size: clamp(1.125rem, 0.6vw + 1rem, 1.375rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  max-width: 40ch;
+  margin-bottom: var(--space-2);
+}
+
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.project-cta {
+  display: inline-block;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  padding: 0.75rem 1.375rem;
+  border-radius: 8px;
+  transition: opacity var(--dur-fast) var(--ease);
+}
+
+.project-cta:hover {
+  opacity: 0.82;
+}
+
+.project-source {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--line-strong);
+  padding-bottom: 2px;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+
+.project-source:hover {
+  color: var(--text);
+  border-color: var(--text);
+}
+
+.featured-media {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-4);
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.featured-media img {
+  width: 100%;
+  max-width: 860px;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+}
+
 /* ---------- 10. About ---------- */
 
 .about {
@@ -681,6 +750,23 @@ footer {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-1);
+  }
+
+  .project--featured {
+    padding-top: var(--space-4);
+  }
+
+  .project-actions {
+    margin-bottom: var(--space-4);
+  }
+
+  .featured-media {
+    padding: var(--space-2);
+    border-radius: 12px;
+  }
+
+  .featured-media img {
+    border-radius: 8px;
   }
 
   .timeline-item {
