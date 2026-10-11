@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>https://im4theone.github.io/WinKit/</loc>
+    <lastmod>2026-10-11</lastmod>
+    <image:image><image:loc>https://im4theone.github.io/WinKit/assets/og-image.jpg</image:loc></image:image>
+    <image:image><image:loc>https://im4theone.github.io/WinKit/assets/winkit-dashboard.webp</image:loc></image:image>
+    <image:image><image:loc>https://im4theone.github.io/WinKit/assets/winkit-disk-usage.webp</image:loc></image:image>
+    <image:image><image:loc>https://im4theone.github.io/WinKit/assets/winkit-diagnostics.webp</image:loc></image:image>
+    <image:image><image:loc>https://im4theone.github.io/WinKit/assets/winkit-cleanup.webp</image:loc></image:image>
+    <image:image><image:loc>https://im4theone.github.io/WinKit/assets/winkit-connection-test.webp</image:loc></image:image>
+    <image:image><image:loc>https://im4theone.github.io/WinKit/assets/winkit-quick-open.webp</image:loc></image:image>
+    <video:video>
+      <video:thumbnail_loc>https://im4theone.github.io/WinKit/assets/showcase-poster.jpg</video:thumbnail_loc>
+      <video:title>WinKit in 30 seconds</video:title>
+      <video:description>A 30-second tour of WinKit 2.1.0: dashboard, Quick Open, disk usage, diagnostics, cleanup, network tools and themes.</video:description>
+      <video:content_loc>https://im4theone.github.io/WinKit/assets/winkit-showcase.mp4</video:content_loc>
+      <video:duration>30</video:duration>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://im4theone.github.io/</loc>
+    <lastmod>2026-10-11</lastmod>
+  </url>
+</urlset>
