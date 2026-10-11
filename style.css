@@ -495,7 +495,7 @@ main section {
 
 .featured-media img {
   width: 100%;
-  max-width: 560px;
+  max-width: 860px;
   height: auto;
   border-radius: 10px;
   border: 1px solid var(--line);
